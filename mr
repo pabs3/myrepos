@@ -2509,6 +2509,7 @@ vcsh_test = perl:
 	-d "$ENV{MR_REPO}/objects" && -f "$ENV{MR_REPO}/config" &&
 	`GIT_CONFIG="$ENV{MR_REPO}"/config git config --get vcsh.vcsh` =~ /true/
 veracity_test  = perl: -d "$ENV{MR_REPO}/.sgdrawer"
+mtn_test = perl: -d "$ENV{MR_REPO}/_MTN"
 
 svn_update = svn update "$@"
 git_update = git pull "$@"
@@ -2524,10 +2525,12 @@ darcs_update = darcs pull -a "$@"
 fossil_update = fossil pull "$@"
 vcsh_update = vcsh run "$MR_REPO" git pull "$@"
 veracity_update = vv pull "$@" && vv update "$@"
+mtn_update =
 
 git_fetch = git fetch --all --prune --tags "$@"
 darcs_fetch = darcs fetch -a "$@"
 hg_fetch = hg pull "$@"
+mtn_fetch =
 
 svn_clean =
 	if [ "x$1" = x-f ] ; then
@@ -2579,6 +2582,13 @@ vcsh_clean =
 	else
 		vcsh run "$MR_REPO" git clean -dx --dry-run "$@"
 	fi
+mtn_clean =
+	if [ "x$1" = x-f ] ; then
+		shift
+		git clean -dx --force "$@"
+	else
+		git clean -dx --dry-run "$@"
+	fi
 
 svn_status = svn status "$@"
 git_status = git status -s "$@" || true; git --no-pager log --branches --not --remotes --simplify-by-decoration --decorate --oneline || true; git --no-pager stash list
@@ -2589,6 +2599,7 @@ darcs_status = darcs whatsnew -ls "$@" || true
 fossil_status = fossil changes "$@"
 vcsh_status = vcsh status "$MR_REPO" "$@" || true
 veracity_status = vv status "$@"
+mtn_status = mtn status "$@"
 
 svn_commit = svn commit "$@"
 git_commit = git commit -a "$@" && git push --all
@@ -2604,6 +2615,7 @@ darcs_commit = darcs record -a "$@" && darcs push -a
 fossil_commit = fossil commit "$@"
 vcsh_commit = vcsh run "$MR_REPO" git commit -a "$@" && vcsh run "$MR_REPO" git push --all
 veracity_commit = vv commit "$@" && vv push
+mtn_commit = vv commit "$@" && vv push
 
 git_record = git commit -a "$@"
 bzr_record =
