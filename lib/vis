@@ -14,3 +14,4 @@ git_svn_vis = if [ "$DISPLAY" ] && command -v gitk > /dev/null 2>&1 ; then gitk 
 git_vis = if [ "$DISPLAY" ] && command -v gitk > /dev/null 2>&1 ; then gitk --all "$@" ; else tig --all "$@" ; fi
 bzr_vis = bzr visualize "$@"
 hg_vis = if [ "$DISPLAY" ] ; then hg view "$@" ; else hgv "$@" ; fi
+mtn_vis = mtn viz "$@"
