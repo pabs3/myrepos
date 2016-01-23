@@ -1,3 +1,9 @@
+myrepos (1.20160123) unstable; urgency=medium
+
+  * Basically just package what Joey did.
+
+ -- Richard Hartmann <richih@debian.org>  Sat, 23 Jan 2016 14:22:44 +0100
+
 myrepos (1.20160122) unstable; urgency=medium
 
   * Fix one missing call to safe_abs_path.
