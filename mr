@@ -746,7 +746,7 @@ sub action {
 
 	if ($is_checkout && ! -d $dir) {
 		print "mr $action: creating parent directory $dir\n" if $verbose;
-		system("mkdir", "-p", $dir);
+		system(qw(mkdir -p --), $dir);
 	}
 
 	if (! $no_chdir && ! chdir($dir)) {
@@ -1661,14 +1661,15 @@ sub bootstrap {
 	eval q{use File::Temp};
 	die $@ if $@;
 	my $tmpconfig=File::Temp->new();
-	my @curlargs = ("curl", "-A", "mr", "-L", "-s", $url, "-o", $tmpconfig);
+	my @curlargs = (qw(curl -A mr -L -s -o), $tmpconfig);
 	push(@curlargs, "-k") if $insecure;
+	push(@curlargs, '--', $url);
 	my $curlstatus = system(@curlargs);
 	die "mr bootstrap: invalid SSL certificate for $url (consider -k)\n" if $curlstatus >> 8 == 60;
 	die "mr bootstrap: download of $url failed\n" if $curlstatus != 0;
 
 	if (! -e $dir) {
-		system("mkdir", "-p", $dir);
+		system(qw(mkdir -p --), $dir);
 	}
 	chdir($dir) || die "chdir $dir: $!";
 
