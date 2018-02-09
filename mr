@@ -1025,6 +1025,23 @@ sub cache_print {
 	return print_results($actionmsg, $quiet, $minimal, $output, $continuous_output, $ret);
 }
 
+sub actionmsg {
+	my $action = shift;
+	my $fulldir = shift;
+	my $actionmsg = "";
+	if (! $no_chdir) {
+		$actionmsg .= "mr $action: " if $print_action;
+		$actionmsg .= $fulldir if $print_dir;
+	}
+	else {
+		my $s=$directory;
+		$s=~s/^\Q$fulldir\E\/?//;
+		$actionmsg .= "mr $action: " if $print_action;
+		$actionmsg .= $fulldir if $print_dir;
+		$actionmsg .= " (in subdir $s)" if $print_subdir;
+	}
+}
+
 sub action {
 	my ($action, $dir, $topdir, $subdir, $force_checkout) = @_;
 	my $fulldir=fulldir($topdir, $subdir);
@@ -1127,17 +1144,7 @@ sub action {
 			$print_cache = 0;
 		}
 
-		my $actionmsg = "";
-		if (! $no_chdir) {
-			$actionmsg .= "mr $action: " if $print_action;
-			$actionmsg .= $fulldir if $print_dir;
-		}
-		else {
-			my $s=$directory;
-			$s=~s/^\Q$fulldir\E\/?//;
-			$actionmsg .= "mr $action: " if $print_action;
-			$actionmsg .= $fulldir if $print_dir;
-			$actionmsg .= " (in subdir $s)" if $print_subdir;
+		if ($no_chdir){
 			if ($chdir_top) { chdir($fulldir); }
 			else {
 				# Avoid contaminating the cache with results for
@@ -1148,6 +1155,8 @@ sub action {
 				$print_cache = 0;
 			}
 		}
+
+		my $actionmsg = actionmsg($action, $fulldir);
 		print "$actionmsg\n" unless !$jobs || $jobs > 1 || $quiet || $minimal || $save_cache || $print_cache;
 
 		my ($hookret, $hook_out)=hook("pre_$action", $topdir, $subdir);
