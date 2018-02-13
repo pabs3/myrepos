@@ -746,9 +746,8 @@ sub terminal_friendly_spawn {
 	if ($terminal) {
 		my $pty = IO::Pty::Easy->new;
 		$pty->spawn($sh);
-		while ($pty->is_active) {
-			my $data = $pty->read();
-			$output .= $data if defined $data;
+		while (my $data = $pty->read()) {
+			$output .= $data;
 		}
 		$pty->close;
 	} else {
