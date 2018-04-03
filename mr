@@ -464,6 +464,16 @@ of the repo before running any commands.
 
 This is used by the C<cache-mr-status.sh> shell extension.
 
+=item --interrupt-quit
+
+When the user interrupts mr with the Ctrl+c keyboard shortcut, normally the
+command for the current directory is terminated, mr waits for another Ctrl+c,
+exits if one is recieved during the interrupt period or continues otherwise.
+
+This option causes mr to just quit when interrupted with Ctrl+c.
+
+=item --interrupt-period 0.5
+
 =item -t
 
 =item --trust-all
