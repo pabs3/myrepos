@@ -45,12 +45,13 @@ cache_mr_status_exit () {
 }
 
 cache_mr_status_chdir () {
+	local mr_dir
 	local dir="$1"
 	[ -n "$MR_CACHE_STATUS_QUIET" ] ||
 	echo "Checking for repositories in $dir ..."
 	[ "$PWD" != "$dir" ] &&
-	dir="$(builtin cd "$dir" && mr --no-recurse --no-print-action --no-print-subdir --no-print-footer list 2>/dev/null)" &&
-	[ "$(mr --no-recurse --no-print-action --no-print-subdir --no-print-footer list 2>/dev/null || true)" != "$dir" ] &&
+	mr_dir="$(builtin cd "$dir" && mr --no-recurse --no-print-action --no-print-subdir --no-print-footer list 2>/dev/null)" &&
+	[ "$(mr --no-recurse --no-print-action --no-print-subdir --no-print-footer list 2>/dev/null || true)" != "$mr_dir" ] &&
 	cache_mr_status "$dir"
 }
 
