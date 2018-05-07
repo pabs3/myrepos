@@ -2351,7 +2351,6 @@ vcsh_update = vcsh run "$MR_REPO" git pull "$@"
 veracity_update = vv pull "$@" && vv update "$@"
 
 git_fetch = git fetch --all --prune --tags "$@"
-git_svn_fetch = git svn fetch "$@"
 darcs_fetch = darcs fetch -a "$@"
 hg_fetch = hg pull "$@"
 
@@ -2363,13 +2362,6 @@ svn_clean =
 		svn-clean --print "$@"
 	fi
 git_clean =
-	if [ "x$1" = x-f ] ; then
-		shift
-		git clean -dx --force "$@"
-	else
-		git clean -dx --dry-run "$@"
-	fi
-git_svn_clean =
 	if [ "x$1" = x-f ] ; then
 		shift
 		git clean -dx --force "$@"
@@ -2485,7 +2477,6 @@ veracity_log = vv log "$@"
 hg_grep = hg grep "$@" || true
 cvs_grep = if command -v ack-grep > /dev/null 2>&1; then ack-grep "$@" || true ; else ack "$@" || true ; fi
 svn_grep = if command -v ack-grep > /dev/null 2>&1; then ack-grep "$@" || true ; else ack "$@" || true ; fi
-git_svn_grep = git grep "$@" || true
 git_grep = git grep "$@" || true
 bzr_grep = if command -v ack-grep > /dev/null 2>&1; then ack-grep "$@" || true ; else ack "$@" || true ; fi
 darcs_grep = if command -v ack-grep > /dev/null 2>&1; then ack-grep "$@" || true ; else ack "$@" || true ; fi
