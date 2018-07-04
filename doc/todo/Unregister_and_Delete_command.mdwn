@@ -15,7 +15,7 @@ While the first command is an example in the documentation the other two basical
 I also had the situation that some repositories were already deleted and so "mr unregister" would fail because it could not "change to directory".
 I've applied the following workaround:
 
-    repo_list=$(mr ls 2>&1 | egrep -o '/.*:' | sed s'|/:||')
+    repo_list=$(mr ls 2>&1 | grep "failed to chdir to" | egrep -o '/.*:' | sed s'|/:||')
     for repo in ${repo_list}; do
         sed -i "\|${repo}|,+2 d" ~/.mrconfig
     done
