@@ -3,6 +3,7 @@ BINDIR:=${PREFIX}/bin
 MANDIR:=${PREFIX}/share/man
 LIBDIR:=${PREFIX}/share/mr
 LIBSHDIR:=${PREFIX}/share/mr.sh
+EGDIR:=${PREFIX}/share/doc/myrepos/examples
 TEST_PREFIX:=./
 
 mans=mr.1 webcheckout.1
@@ -25,6 +26,7 @@ install: build
 	install -d ${DESTDIR}${MANDIR}/man1
 	install -d ${DESTDIR}${LIBDIR}
 	install -d ${DESTDIR}${LIBSHDIR}
+	install -d ${DESTDIR}${EGDIR}
 
 	install -m0755 mr ${DESTDIR}${BINDIR}/
 	install -m0755 webcheckout ${DESTDIR}${BINDIR}/
@@ -35,5 +37,7 @@ install: build
 	install -m0644 lib/* ${DESTDIR}${LIBDIR}/
 	install -m0644 lib.sh/* ${DESTDIR}${LIBSHDIR}/
 
+	install -m0644 mrconfig ${DESTDIR}${EGDIR}/
+	install -m0644 mrconfig.complex ${DESTDIR}${EGDIR}/
 clean:
 	rm -f $(mans)
