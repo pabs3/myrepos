@@ -1,4 +1,8 @@
 PREFIX:=/usr
+BINDIR:=${PREFIX}/bin
+MANDIR:=${PREFIX}/share/man
+LIBDIR:=${PREFIX}/share/mr
+LIBSHDIR:=${PREFIX}/share/mr.sh
 TEST_PREFIX:=./
 
 mans=mr.1 webcheckout.1
@@ -17,19 +21,19 @@ test:
 	rm -f .mrconfig
 
 install: build
-	install -d ${DESTDIR}${PREFIX}/bin
-	install -d ${DESTDIR}${PREFIX}/share/man/man1
-	install -d ${DESTDIR}${PREFIX}/share/mr
-	install -d ${DESTDIR}${PREFIX}/share/mr.sh
+	install -d ${DESTDIR}${BINDIR}
+	install -d ${DESTDIR}${MANDIR}/man1
+	install -d ${DESTDIR}${LIBDIR}
+	install -d ${DESTDIR}${LIBSHDIR}
 
-	install -m0755 mr ${DESTDIR}${PREFIX}/bin/
-	install -m0755 webcheckout ${DESTDIR}${PREFIX}/bin/
+	install -m0755 mr ${DESTDIR}${BINDIR}/
+	install -m0755 webcheckout ${DESTDIR}${BINDIR}/
 
-	install -m0644 mr.1 ${DESTDIR}${PREFIX}/share/man/man1/
-	install -m0644 webcheckout.1 ${DESTDIR}${PREFIX}/share/man/man1/
+	install -m0644 mr.1 ${DESTDIR}${MANDIR}/man1/
+	install -m0644 webcheckout.1 ${DESTDIR}${MANDIR}/man1/
 
-	install -m0644 lib/* ${DESTDIR}${PREFIX}/share/mr/
-	install -m0644 lib.sh/* ${DESTDIR}${PREFIX}/share/mr.sh/
+	install -m0644 lib/* ${DESTDIR}${LIBDIR}/
+	install -m0644 lib.sh/* ${DESTDIR}${LIBSHDIR}/
 
 clean:
 	rm -f $(mans)
