@@ -10,6 +10,7 @@ Uploaders:
 Standards-Version: 4.1.1
 Homepage: https://myrepos.branchable.com/
 Vcs-Git: git://myrepos.branchable.com/
+Vcs-Browser: http://source.myrepos.branchable.com/?p=source.git;a=summary
 
 Package: myrepos
 Architecture: all
