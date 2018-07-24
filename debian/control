@@ -8,6 +8,7 @@ Maintainer: Richard Hartmann <richih@debian.org>
 Uploaders:
  Paul Wise <pabs@debian.org>,
 Standards-Version: 4.1.1
+Rules-Requires-Root: no
 Homepage: https://myrepos.branchable.com/
 Vcs-Git: git://myrepos.branchable.com/
 Vcs-Browser: http://source.myrepos.branchable.com/?p=source.git;a=summary
