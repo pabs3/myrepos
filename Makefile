@@ -1,4 +1,5 @@
 PREFIX:=/usr
+TEST_PREFIX:=./
 
 mans=mr.1 webcheckout.1
 
@@ -11,9 +12,9 @@ webcheckout.1: webcheckout
 	pod2man -c webcheckout webcheckout | sed s/mailto:// > webcheckout.1
 
 test:
-	(echo "[.]"; echo "checkout=") > mrconfig.tmp
-	./mr --trust-all -c mrconfig.tmp ed | grep -q "horse"
-	rm -f mrconfig.tmp
+	(echo "[.]"; echo "checkout=") > .mrconfig
+	HOME='${CURDIR}' ${TEST_PREFIX}mr --trust-all ed | grep -q "horse"
+	rm -f .mrconfig
 
 install: build
 	install -d ${DESTDIR}${PREFIX}/bin
