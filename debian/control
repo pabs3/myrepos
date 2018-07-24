@@ -16,7 +16,6 @@ Vcs-Browser: http://source.myrepos.branchable.com/?p=source.git;a=summary
 Package: myrepos
 Architecture: all
 Multi-Arch: foreign
-Section: vcs
 Depends:
  perl,
  ${misc:Depends},
