@@ -12,6 +12,7 @@ Vcs-Git: git://myrepos.branchable.com/
 
 Package: myrepos
 Architecture: all
+Multi-Arch: foreign
 Section: vcs
 Depends:
  perl,
