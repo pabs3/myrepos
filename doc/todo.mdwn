@@ -19,9 +19,7 @@ See also:
 [MacPorts](https://github.com/macports/macports-ports/tree/master/devel/myrepos),
 [Homebrew](https://github.com/Homebrew/homebrew-core/blob/master/Formula/mr.rb),
 [Linuxbrew](https://github.com/Linuxbrew/homebrew-core/blob/master/Formula/mr.rb),
-Repology
-([myrepos](https://repology.org/metapackage/myrepos/versions),
-[mr](https://repology.org/metapackage/mr/versions])).
+[Repology](https://repology.org/metapackage/myrepos/versions).
 
 [[!inline pages="./todo/* and !./todo/done and !link(done)
 and !*/Discussion" actions=yes postform=yes show=0 archive=yes]]
