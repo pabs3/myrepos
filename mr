@@ -2043,7 +2043,7 @@ sub bootstrap {
 	# Retrieve config file.
 	eval q{use File::Temp};
 	die $@ if $@;
-	my $tmpconfig=File::Temp->new();
+	my $tmpconfig=File::Temp->new(SUFFIX => '.mrconfig');
 	if ($src =~ m!^[\w\d]+://!) {
 		# Download the config file to a temporary location.
 		my @downloader;
