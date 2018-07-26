@@ -1,3 +1,35 @@
+myrepos (1.20180726) unstable; urgency=medium
+
+  [ Andrew Bradford ]
+  * Suggest perl-doc (Closes: #813738)
+
+  [ Mark Haber ]
+  * Fix hours_since for git fake bare repos (Closes: #828827)
+
+  [ Tom Hoover ]
+  * Fix 'no defined update command error' in example config
+
+  [ Pavel Nakonechnyi ]
+  * More meaningful names for temporary files
+
+  [ Paul Wise ]
+  * Mitigate vulns caused by git code execution (Closes: #840014, CVE-2018-7032)
+  * Migrate from ack-grep to ack (Closes: #849600)
+  * More reliable output supervision
+  * Allow prepending commands to existing commands
+  * Allow for fallback to default commands
+  * Add support for caching command output
+  * Add graph, remote, upgrade extensions
+  * Improve the status output for CVS
+  * Improve the git-cvs extension
+  * Add shell extension to maintain a repo status cache
+  * git registration improvements
+  * webcheckout: prefer https transport
+  * Suggest more tools that are used
+  * Various packaging cleanups
+
+ -- Paul Wise <pabs@debian.org>  Thu, 26 Jul 2018 14:14:21 +0800
+
 myrepos (1.20171231) unstable; urgency=medium
 
   [ Joey Hess ]
