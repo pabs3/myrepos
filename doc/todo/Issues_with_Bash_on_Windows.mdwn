@@ -12,5 +12,3 @@ mr s: received signal 127
 The status action does not cover a number of my repos, it just stops at the first repo.
 
 I have installed `mr` via `sudo apt-get install mr`.
-```
-
