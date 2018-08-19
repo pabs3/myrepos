@@ -12,3 +12,5 @@ mr s: received signal 127
 The status action does not cover a number of my repos, it just stops at the first repo.
 
 I have installed `mr` via `sudo apt-get install mr`.
+```
+I hit the same error just now. Still getting the 127 error as I'm using Ubuntu 16.04 package version of `mr`.
