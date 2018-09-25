@@ -1,0 +1,1 @@
+as the title states, I would like mr status to be --minimal by default, is there a way to change it in .mrconfig?
