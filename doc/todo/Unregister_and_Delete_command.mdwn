@@ -16,7 +16,7 @@ I also had the situation that some repositories were already deleted and so "mr 
 I've applied the following workaround:
 
     repo_list=$(mr ls 2>&1 | grep "failed to chdir to" | egrep -o "/.*:" | sed "s|/:||" | sed "s|${HOME}/||")
-    for repo in ${repo_list}; do
+    for repo in ${repo_list//${HOME}\//}; do
         sed -i "\|${repo}|,+2 d" ~/.mrconfig
     done
 
