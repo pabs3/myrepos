@@ -5,9 +5,10 @@ I found this script pretty useful but lacking some basic commands for cleanup li
 I've added the following definitions in my ~/.mrconfig file:
 
     [DEFAULT]
+    # Teach mr how to `mr gc` in git repos.
     git_gc = git gc "$@"
-    unregister = sed -i "\|${PWD}|,+2 d" ${MR_CONFIG}
-    delete = rm -rI "$@" "$PWD" && sed -i "\|${PWD}|,+2 d" ${MR_CONFIG}
+    unregister = sed -i "\|${PWD//${HOME}\//}|,+2 d" ${MR_CONFIG}
+    delete = rm -rI "$@" "$PWD" && sed -i "\|${PWD//${HOME}\//}|,+2 d" ${MR_CONFIG}
 
 While the first command is an example in the documentation the other two basically iterate over available repos in "mr ls" to either just remove the entry lines from mrconfig file (mr unregister) or delete existing directory with confirmations (mr delete) and then unregister, you can force using (mr delete -f)
 
