@@ -84,6 +84,7 @@ Some more examples of things it can do include:
 ## related software
 
 * [repo](https://android.googlesource.com/tools/repo): git repository management tool
+* [gita](https://github.com/nosarthur/gita): manage multiple git repos
 * [kas](https://github.com/siemens/kas): bitbake repository management tool
 * [VCS](http://www.greenend.org.uk/rjk/vcs/): a wrapper for version control systems
 * [vcstool](https://github.com/dirk-thomas/vcstool): work with multiple repositories
