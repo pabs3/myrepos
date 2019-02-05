@@ -85,11 +85,15 @@ Some more examples of things it can do include:
 
 * [repo](https://android.googlesource.com/tools/repo): git repository management tool
 * [gita](https://github.com/nosarthur/gita): manage multiple git repos
+* [git-plus](https://github.com/tkrajina/git-plus] multi: run commands in multiple git repos
+* [mu-repo](https://fabioz.github.io/mu-repo/): help working with multiple git repos
+* [uncommitted](https://github.com/brandon-rhodes/uncommitted): find uncommitted changes in VCS directories
 * [kas](https://github.com/siemens/kas): bitbake repository management tool
 * [VCS](http://www.greenend.org.uk/rjk/vcs/): a wrapper for version control systems
 * [vcstool](https://github.com/dirk-thomas/vcstool): work with multiple repositories
 * [vcstools](https://github.com/vcstools/vcstools): Python API wrapping version control systems
 * [rosinstall](https://github.com/vcstools/rosinstall): source code workspace management tool
+* [wstool](https://github.com/vcstools/wstool): maintain workspace of projects from multiple VCSes
 * [vcs-repo-mgr](https://github.com/xolox/python-vcs-repo-mgr): version control repository manager
 * [go-vcs](https://github.com/Masterminds/vcs): version control repository management for Golang
 * [v](https://github.com/ChristophBerg/dotfiles/blob/master/bin/v): version control subcommand wrapper
