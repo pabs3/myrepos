@@ -7,7 +7,7 @@
 # Original author (2011):
 # Adam Spiers <mr@adamspiers.org>
 #
-# This version reworked (2016, 2017) & maintained (2017) by:
+# This version reworked (2016, 2017) & maintained (2017, 2019) by:
 # Sean Whitton <spwhitton@spwhitton.name>
 
 # BASIC USAGE INSTRUCTIONS
@@ -162,6 +162,7 @@ lib =
     }
     mr_restow_if_already_stowed () {
         stowable_then_continue || return 0
+        set_stow_common_opts
         if ! [ -L "$STOW_PKG_PATH" ]; then
             info "$MR_REPO wasn't stowed yet; won't restow."
             return
