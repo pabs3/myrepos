@@ -85,6 +85,7 @@ Some more examples of things it can do include:
 
 * [repo](https://android.googlesource.com/tools/repo): git repository management tool
 * [gita](https://github.com/nosarthur/gita): manage multiple git repos
+* [gitbatch](https://github.com/isacikgoz/gitbatch): manage multiple git repos in one place
 * [git-plus](https://github.com/tkrajina/git-plus) multi: run commands in multiple git repos
 * [mu-repo](https://fabioz.github.io/mu-repo/): help working with multiple git repos
 * [ghq](https://github.com/motemen/ghq): manage remote repository clones
