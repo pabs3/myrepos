@@ -865,7 +865,10 @@ sub terminal_friendly_spawn {
 			}
 		}
 		else {
-			while (my $data = $pty->read()) {
+			while (1) {
+				my $data = $pty->read();
+				next if !defined $data; # interrupted by a signal
+				last if $data eq '';    # EOF
 				print $output_cache $data if defined $output_cache;
 				$output .= $data;
 			}
