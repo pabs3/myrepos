@@ -1,0 +1,19 @@
+I have a ton of repos in my `~/.mrconfig`, so a full `mr update` takes a long time, even if parallelized. A lot of those remotes are on the same server, however, so I can't help but wonder if it would save time to enable `ControlMaster` from mr directly. I know I could set that up in my `~/.ssh/config` myself, but I'm not sure I feel comfortable setting that all for all use cases. If it would be done in mr, it could setup the multiplexer and tear it down when done...
+
+Here a full pull (`mr -j10 update`) takes:
+
+    30.39user 8.05system 1:51.04elapsed 34%CPU (0avgtext+0avgdata 73320maxresident)k
+    0inputs+15664outputs (0major+529937minor)pagefaults 0swaps
+
+One trick is that multiplexing might fail with `-j` because of a race condition that ssh doesn't seem to handle very well:
+
+    ControlSocket /home/anarcat/.ssh/control-master-747c83a00480de0860fde4d7df86be06fe25e555.sock already exists, disabling multiplexing
+
+That's with the following configuration:
+
+     ControlMaster auto
+     ControlPath ~/.ssh/control-master-%C.sock
+
+So with that configuration, there's very little improvement, unfortunately. I would bet that, however, mr could be smarter than this and dispatch stuff much better...
+
+Thanks! -- [[anarcat]]
