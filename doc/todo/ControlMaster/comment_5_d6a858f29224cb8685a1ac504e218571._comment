@@ -1,0 +1,22 @@
+[[!comment format=mdwn
+ username="PaulWise"
+ avatar="http://cdn.libravatar.org/avatar/3bf5f3b29a3d68ddf11eb1a3d8c5dc65"
+ subject="comment 5"
+ date="2019-10-18T15:10:35Z"
+ content="""
+About the TOFU issue, agreed that is better for security. I switched away because my `ControlMaster autoask` at the time was very annoying during `mr fetch`. On alioth I had an SSH key for read-only git access with no prompt and a key for read-write git access with a prompt, but that doesn't appear to be supported by gitlab/etc. I probably should rethink how to do this more optimally at some point.
+
+For the git fetch issue, you could do something like what I do here to make `mr -m fetch` not print things for remotes that don't have any changes and skip remotes that I disabled fetching from because they are gone now. Then just add any checks you want; if the remote is a USB stick and the path doesn't exist, skip the remote. You could also just make a git_fetchorigin command to only fetch one remote.
+
+```
+# work around git annoyance with mr -m fetch
+git_fetch =
+        git remote |
+                while read -r remote ; do
+                        if [ xtrue != \"x$(git config --bool \"remote.$remote.skipFetchAll\")\" ] ; then
+                                git fetch \"$remote\"
+                                git fetch --tags \"$remote\"
+                        fi
+                done
+```
+"""]]
