@@ -1,0 +1,26 @@
+[[!comment format=mdwn
+ username="PaulWise"
+ avatar="http://cdn.libravatar.org/avatar/3bf5f3b29a3d68ddf11eb1a3d8c5dc65"
+ subject="my approach"
+ date="2019-10-18T04:27:19Z"
+ content="""
+I've worked to getting most of my remote repos over https instead of SSH. This is mainly because I have a prompt for each use of my SSH keys, but also helps with this problem.
+
+I'm using ControlMaster for all SSH connections, with some situations where I turn it off, and I find it works fairly well apart from the annoying race condition you mention during `mr fetch`. I use time-limited connections so I don't have SSH running forever.
+
+Instead of configuring ControlMaster for all SSH connections, you could also just configure it for the hosts that you can only use git with (I'm thinking github.com/etc).
+
+I suggest putting SSH sockets in $XDG_RUNTIME_DIR instead of HOME, so you never get stale sockets after reboot and never get backup programs looking at sockets (some do).
+
+```
+ControlMaster autoask
+ControlPath /run/user/%i/ssh-control-%l->%r@%h:%p
+ControlPersist 60
+```
+
+To be honest I'm not sure how myrepos could selectively enable ControlMaster for commands it runs. The only thing I can think of would be to modify PATH to add a script that runs the real `ssh` with additional options, but that seems pretty hacky.
+
+Either way, if ControlMaster provides very little improvement for you, adding it via myrepos instead of via the SSH config isn't going to change that.
+
+PS: I only ever do `mr -j10 fetch` and I leave updating branches to interactive shells where I can deal with any conflicts manually.
+"""]]
