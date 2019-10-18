@@ -1,0 +1,8 @@
+[[!comment format=mdwn
+ username="PaulWise"
+ avatar="http://cdn.libravatar.org/avatar/3bf5f3b29a3d68ddf11eb1a3d8c5dc65"
+ subject="dispatch stuff much better..."
+ date="2019-10-18T04:38:44Z"
+ content="""
+Perhaps by \"dispatch stuff much better\" you mean just to avoid the race condition? Grouping accesses to the same host isn't likely to improve speed, especially if it is an overloaded host you probably want to spread out accesses instead. For spreading accesses out, it isn't possible for myrepos to know what host(s) the command it runs will connect to, since that info is in the git config for each repo and the myrepos copy of that config could be out of date and would be missing non-origin remotes.
+"""]]
