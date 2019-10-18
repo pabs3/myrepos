@@ -1,0 +1,77 @@
+[[!comment format=mdwn
+ username="anarcat"
+ avatar="http://cdn.libravatar.org/avatar/b486931ea9d27c0cc41a4e9e4daccb7c"
+ subject="comment 4"
+ date="2019-10-18T14:50:54Z"
+ content="""
+> I've worked to getting most of my remote repos over https instead of SSH. This is mainly because I have a prompt for each use of my SSH keys, but also helps with this problem.
+
+My [wrapper script](https://gitlab.com/anarcat/scripts/raw/master/sync-boxes) takes care of that: it makes sure SSH works first...
+
+But it's true I might have better performance over HTTPS, I guess. It's just that I like the idea of pulling everything over SSH: I have a solid TOFU there that I don't have over HTTPS... And since this is an automated process, I really prefer to have that solid trust path in place. Plus setting up each push/pull URL is annoying, although there are nice ways around that, as you said...
+
+> Instead of configuring ControlMaster for all SSH connections, you could also just configure it for the hosts that you can only use git with (I'm thinking github.com/etc).
+>
+> I suggest putting SSH sockets in $XDG_RUNTIME_DIR instead of HOME, so you never get stale sockets after reboot and never get backup programs looking at sockets (some do).
+
+Excellent suggestions, thanks!
+
+> To be honest I'm not sure how myrepos could selectively enable ControlMaster for commands it runs. The only thing I can think of would be to modify PATH to add a script that runs the real ssh with additional options, but that seems pretty hacky.
+
+Well, what I was thinking of is that etckeeper is the one that calls the git processes ultimately, so it could do some magic with `GIT_SSH_COMMAND` for example... It's VCS-specific of course... :/
+
+> Either way, if ControlMaster provides very little improvement for you, adding it via myrepos instead of via the SSH config isn't going to change that.
+
+I guess I would first need to figure out *that* part of course. ;)
+
+> PS: I only ever do mr -j10 fetch and I leave updating branches to interactive shells where I can deal with any conflicts manually.
+
+That's also a good point, I always forget about `fetch`, thanks!
+
+One of the problems i have with `fetch` though is that it pulls *all* remotes that are configured. In some cases, those refer to USB keys or non-existent, transient repos... For example, I have this in one repo:
+
+    anarcat@angela:calendes(master)$ git rv
+    origin	anarc.at:/var/www/calendes (fetch)
+    origin	anarc.at:/var/www/calendes (push)
+    sneakernet	/media/anarcat/KINGSTON/calendes/ (fetch)
+    sneakernet	/media/anarcat/KINGSTON/calendes/ (push)
+
+It fails with the following:
+
+    mr fetch: /home/anarcat/Pictures/calendes
+    Récupération de origin
+    Récupération de sneakernet
+    fatal: '/media/anarcat/KINGSTON/calendes/' does not appear to be a git repository
+    fatal: Impossible de lire le dépôt distant.
+
+This also makes `fetch` slower, as it fetches more remotes.
+
+> Perhaps by \"dispatch stuff much better\" you mean just to avoid the race condition?
+
+Well, what I would like would be to the process to be much faster. I am not sure it's possible at all! I figured that ControlMaster might help, but I stumbled upon the race condition, so maybe that's the first thing to solve. Maybe, even, that's a bug in the ssh client itself that should *never* run into such a race condition (it could easily *wait* just a bit for another process to setup the socket correctly when it's created, for example).
+
+Here's a new benchmark, with your `ControlPersist` setting. I still
+get those errors, unfortunately:
+
+    ControlSocket /run/user/1000/ssh-control-local-user@remote.example.com:22 already exists, disabling multiplexing
+
+... which feel more and more like a bug in SSH: if it exists, use it!
+If you can't use it, just wait! If you can't wait, just shut the hell
+up, no? :)
+
+Anyways, without the multiplexer:
+
+    13.45user 6.51system 2:10.01elapsed 15%CPU (0avgtext+0avgdata 44900maxresident)k
+    0inputs+14400outputs (0major+514164minor)pagefaults 0swaps
+
+And with the multiplexer:
+
+    8.75user 4.86system 1:48.98elapsed 12%CPU (0avgtext+0avgdata 44972maxresident)k
+    1760inputs+14000outputs (39major+474784minor)pagefaults 0swaps
+
+So it still shaves off a good 20 seconds, which is not negligible. But
+since I now use `fetch` instead of update, I'm actually back to square
+one, and get tons of warnings to go through. :p
+
+Can't help but think this is just a bug with ssh though...
+"""]]
