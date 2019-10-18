@@ -1,0 +1,13 @@
+[[!comment format=mdwn
+ username="PaulWise"
+ avatar="http://cdn.libravatar.org/avatar/3bf5f3b29a3d68ddf11eb1a3d8c5dc65"
+ subject="comment 2"
+ date="2019-10-18T04:29:24Z"
+ content="""
+PS: I forgot to mention that I use https for the repo remote URLs and then I set the push URLs globally in `~/.gitconfig` like this:
+
+```
+[url \"ssh://github.com/\"]
+        pushInsteadOf = https://github.com/
+```
+"""]]
