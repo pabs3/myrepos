@@ -1,0 +1,18 @@
+[[!comment format=mdwn
+ username="joey"
+ subject="""comment 6"""
+ date="2019-10-20T17:50:20Z"
+ content="""
+git-annex contains a robust implementation of this in Annex/Ssh.hs.
+It's nontrivial; my implementation is over 400 LoC.
+
+Some other complications that may or may not have been discussed:
+
+* The path to a unix socket is limited to around 100 bytes,
+  so using the full server name in the socket name will sometimes fail.
+* Multiple password prompting has to be avoided when there's concurrency.
+  This and ssh failing on a socket that is not yet connected can both be
+  dealt with by locking until a connection is set up, running a dummy
+  command like "true" has to be run over ssh to know when the connection is
+  up.
+"""]]
