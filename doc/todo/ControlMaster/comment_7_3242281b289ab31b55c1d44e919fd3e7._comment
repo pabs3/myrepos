@@ -1,0 +1,14 @@
+[[!comment format=mdwn
+ username="anarcat"
+ avatar="http://cdn.libravatar.org/avatar/b486931ea9d27c0cc41a4e9e4daccb7c"
+ subject="thanks!"
+ date="2019-10-25T15:25:27Z"
+ content="""
+thanks for all the advice, pabs and joeyh! :)
+
+joeyh: I suspected there was a lot more to it, and considering what I know of Haskell, I suspect 400 LOC in Haskell would translate into something much more complex in myrepos. :p
+
+pabs: neat trick! couldn't this be merged straight into mr though? it seems you have reimplemented most of the mr functions in your .mrconfig now. :)
+
+also, now that I switched to `fetch`, i keep up stumbling upon the issue that i have to rerun update everywhere to get the changes... couldn't there be a way to run update (with `--ff-only` maybe) *and* fetch at once? in other words, why doesn't `update` fetch changes from all remotes?
+"""]]
