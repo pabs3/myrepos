@@ -1,0 +1,15 @@
+[[!comment format=mdwn
+ username="PaulWise"
+ avatar="http://cdn.libravatar.org/avatar/3bf5f3b29a3d68ddf11eb1a3d8c5dc65"
+ subject="comment 8"
+ date="2019-10-27T02:15:24Z"
+ content="""
+My git_fetch is just a workaround for something that IMO belongs in git itself that I haven't gotten around to implementing in a way that would be acceptable to git upstream. I have a branch that implements what I wanted, but it got rejected upstream and I never got around to figuring out a way forward:
+
+https://github.com/pabs3/git/commits/minimal-output
+https://public-inbox.org/git/1445741384-30828-1-git-send-email-pabs3@bonedaddy.net/
+
+Personally, I think in many instances `git pull` should be deprecated in favour of `git fetch` plus reviewing the incoming changes from upstream and then if appropriate fast-forwarding/rebasing/merging branches and fixing any issues. The obvious exception is upstreams that move so fast that review is not possible (like Linux) or people who have way too many repos checked out like me :)
+
+The default `mr update` just runs `git pull`, which allegedly \"is shorthand for git fetch followed by git merge FETCH_HEAD\" according to the docs. Unfortunately `git pull` doesn't seem to respect the `alias.fetch` config and I don't see any other config option to make git update/fetch pull from all remotes. We could change `mr update` to run `git pull --all` instead I guess, not sure if there are any downsides to that apart from the behaviour change...
+"""]]
