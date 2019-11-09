@@ -70,5 +70,5 @@ Description: tool to manage all your version control repos
     the update process.
   * Remember actions that failed due to a laptop being offline, so they
     can be retried when it comes back online.
-  .
-  This package also includes the webcheckout command.
+ .
+ This package also includes the webcheckout command.
