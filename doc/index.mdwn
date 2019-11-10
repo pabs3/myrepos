@@ -91,7 +91,7 @@ Some more examples of things it can do include:
 * [ghq](https://github.com/motemen/ghq): manage remote repository clones
 * [uncommitted](https://github.com/brandon-rhodes/uncommitted): find uncommitted changes in VCS directories
 * [kas](https://github.com/siemens/kas): bitbake repository management tool
-* [VCS](http://www.greenend.org.uk/rjk/vcs/): a wrapper for version control systems
+* [VCS](https://www.greenend.org.uk/rjk/vcs/): a wrapper for version control systems
 * [vcstool](https://github.com/dirk-thomas/vcstool): work with multiple repositories
 * [vcstools](https://github.com/vcstools/vcstools): Python API wrapping version control systems
 * [rosinstall](https://github.com/vcstools/rosinstall): source code workspace management tool
