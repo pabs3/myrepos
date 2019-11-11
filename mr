@@ -2679,7 +2679,7 @@ cvs_register =
 	root=`cat CVS/Root`
 	if [ -z "$root" ]; then
 		error "cannot determine cvs root"
-		fi
+	fi
 	echo "Registering cvs repository $repo at root $root"
 	mr -c "$MR_CONFIG" config "`pwd`" checkout="cvs -d '$root' co -d '$MR_REPO' '$repo'"
 hg_register =
