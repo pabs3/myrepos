@@ -1659,6 +1659,17 @@ sub is_trusted_checkout {
 					($words[$c])=$url=~/\/([^\/]+)\/?$/;
 				}
 
+				# bzr projects on launchpad usually use lp:project
+				# when branching so allow that as a safe way to
+				# checkout launchpad projects
+				urlutils.derive_to_location
+				http://bazaar.launchpad.net/+branch/bzr/view/head:/bzrlib/urlutils.py#L750
+				if (! defined $words[$c] && defined $url) {
+					if ($key eq 'bzr_trusted_checkout') {
+						($words[$c])=$url=~/^lp:[^\/]+$/;
+					}
+				}
+
 				$match=(
 					defined $words[$c] &&
 					is_trusted_repo($words[$c])
