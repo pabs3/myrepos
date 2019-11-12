@@ -29,7 +29,6 @@ Suggests:
  fossil,
  git-annex,
  git-big-picture,
- git-core | git (>= 1:1.7),
  git-svn,
  gitk | tig,
  kdesdk-scripts,
@@ -47,6 +46,7 @@ Provides:
 Replaces:
  mr,
 Recommends:
+ git,
  libfile-homedir-perl,
  libhtml-parser-perl,
  libio-pty-easy-perl,
