@@ -1452,7 +1452,7 @@ sub expandenv {
 
 
 	if ($val=~/\$/) {
-		$val=`echo "$val"`;
+		$val=`printf '%s' "$val"`;
 		chomp $val;
 	}
 
