@@ -134,6 +134,53 @@ C<mr -m grep foo> and not get output in non-matching repositories.
 
 Runs the specified command in each repository.
 
+The command is run exactly as provided to mr,
+without any interpretation by the shell
+other than the one that mr is run from.
+
+If you would like to access C<$MR_REPO> or
+any of the other special environment variables,
+you can access them by running a shell command:
+
+  mr run sh -c 'ls "$MR_REPO"'
+
+If you would like more permanent flexibility
+then you can define commands in your config
+to evaluate the command as shell
+or run the command in a subshell.
+Please note that using these options
+could make it hard to do quoting correctly.
+
+For example you can define eval/sh/bash commands:
+
+  mr config DEFAULT 'eval=eval "$*"'
+  mr config DEFAULT 'sh=sh -c "$*"'
+  mr config DEFAULT 'bash=bash -c "$*"'
+
+You can run those commands like this:
+
+  mr eval 'ls "$MR_REPO"'
+  mr sh 'ls "$MR_REPO"'
+  mr bash 'ls "$MR_REPO"'
+
+You can of course override the run command
+rather than defining any new commands.
+
+  mr config DEFAULT 'run=eval "$*"'
+  mr config DEFAULT 'run=sh -c "$*"'
+  mr config DEFAULT 'run=bash -c "$*"'
+
+If you would like to run other mr commands for each repo
+a better option is to define a new command that does that.
+
+For example you might want to configure multiple repos:
+
+  mr config DEFAULT 'configure=mr config "$MR_REPO" "$@"'
+
+You can run that command like this:
+
+  mr configure foo=bar bar=baz
+
 =back
 
 These commands are also available:
