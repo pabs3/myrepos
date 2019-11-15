@@ -241,6 +241,9 @@ Adds, modifies, removes, or prints a value from a mrconfig file. The next
 parameter is the name of the section the value is in. To add or modify
 values, use one or more instances of "setting=value". Use "setting=" to
 remove a setting. Use just "setting" to get the value of a that setting.
+When the section is not provided and only one setting is provided the section
+will default to the repository corresponding to the current directory if
+it is already registered in the configuration.
 
 For example, to add (or edit) a repository in src/foo:
 
@@ -253,6 +256,15 @@ To show the command that mr uses to update the repository in src/foo:
 To see the built-in library of shell functions contained in mr:
 
   mr config DEFAULT lib
+
+To operate on one setting for the current repository:
+
+  mr config setting
+  mr config setting=
+  mr config setting=value
+
+Do not pass more than one setting when omitting the repository section,
+otherwise the first setting will be used as the section instead.
 
 The mrconfig file that is used is chosen by either the -c option, or by
 looking for the closest known one at or in a parent of the current directory.
@@ -2010,7 +2022,13 @@ sub help {
 
 sub config {
 	if (@_ < 2) {
-		die "mr config: not enough parameters\n";
+		my ($dir) = find_repo_for($directory);
+		if (defined $dir && @_ == 1) {
+			$dir=~s{/$}{};
+			unshift @_, $dir;
+		} else {
+			die "mr config: not enough parameters\n";
+		}
 	}
 	my $section=shift;
 	if ($section=~/^\//) {
