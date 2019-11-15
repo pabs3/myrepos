@@ -1449,6 +1449,24 @@ sub absrepodir {
 	return (defined $absret ? $absret : $ret);
 }
 
+sub find_repo_for {
+	my $directory = shift;
+	foreach my $repo (reverse repolist()) {
+		my $topdir=$repo->{topdir};
+		my $subdir=$repo->{subdir};
+
+		next if $subdir eq 'DEFAULT';
+		my $dir=absrepodir($repo);
+		my $d=$directory;
+		$dir.="/" unless $dir=~/\/$/;
+		$d.="/" unless $d=~/\/$/;
+		if ($d=~/^\Q$dir\E/) {
+			return ($dir, $topdir, $subdir);
+		}
+	}
+	return ();
+}
+
 # Figure out which repos to act on.  Returns a list of array refs
 # in the format:
 #
@@ -1475,20 +1493,8 @@ sub selectrepos {
 	}
 	if (! @repos) {
 		# fallback to find a leaf repo
-		foreach my $repo (reverse repolist()) {
-			my $topdir=$repo->{topdir};
-			my $subdir=$repo->{subdir};
-
-			next if $subdir eq 'DEFAULT';
-			my $dir=absrepodir($repo);
-			my $d=$directory;
-			$dir.="/" unless $dir=~/\/$/;
-			$d.="/" unless $d=~/\/$/;
-			if ($d=~/^\Q$dir\E/) {
-				push @repos, [$dir, $topdir, $subdir];
-				last;
-			}
-		}
+		my @current_repo = find_repo_for($directory);
+		push @repos, [@current_repo] if @current_repo;
 		$no_chdir=1;
 	}
 	return @repos;
