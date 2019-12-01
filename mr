@@ -386,6 +386,21 @@ If a number is specified, will recurse into repositories at most that many
 subdirectories deep. For example, with -n 2 it would recurse into ./src/foo,
 but not ./src/packages/bar.
 
+=item -r [number]
+
+=item --recurse [number]
+
+Normal commands recurse normally and commands that usually only operate on
+the repository for the current directory will instead recursively operate
+on all repositories under the current directory.
+
+If no number if specified or the number is 0 then the whole directory tree
+under the current directory will be recursed.
+
+If a number greater than 0 is specified, will recurse into repositories at
+most that many subdirectories deep. For example, with -r 2 it would recurse
+into ./src/foo, but not ./src/packages/bar.
+
 =item -j [number]
 
 =item --jobs [number]
@@ -1994,7 +2009,7 @@ sub modifyconfig {
 sub dispatch {
 	my $action=shift;
 
-	# actions that do not operate on all repos
+	# actions that do not operate on all repos by default
 	if ($action eq 'config') {
 		config(@ARGV);
 	}
@@ -2252,6 +2267,7 @@ sub getopts {
 		"k|insecure" => \$insecure,
 		"i|interactive" => \$interactive,
 		"n|no-recurse:i" => \$max_depth,
+		"r|recurse:i" => sub { $max_depth = $_[1] ? $_[1] : ~0; },
 		"j|jobs:i" => \$jobs,
 		"t|trust-all" => \$trust_all,
 	);
