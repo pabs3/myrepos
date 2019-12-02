@@ -758,6 +758,7 @@ my $max_depth;
 my $no_chdir=0;
 my $chdir_top=0;
 my $jobs=1;
+my $jobs_cmdline=0;
 my $trust_all=0;
 our $save_cache=0;
 our $print_cache=0;
@@ -1850,7 +1851,7 @@ sub loadconfig {
 					print "mr: error: --jobs must be numeric\n";
 					exit 2
 				}
-				$jobs=$value;
+				$jobs=$value unless $jobs_cmdline;
 				next;
 			}
 
@@ -2325,7 +2326,7 @@ sub getopts {
 		"i|interactive" => \$interactive,
 		"n|no-recurse:i" => \$max_depth,
 		"r|recurse:i" => sub { $max_depth = $_[1] ? $_[1] : ~0; },
-		"j|jobs:i" => \$jobs,
+		"j|jobs:i" => sub { $jobs = $_[1]; $jobs_cmdline=1; },
 		"t|trust-all" => \$trust_all,
 	);
 	if (! $result || @ARGV < 1) {
