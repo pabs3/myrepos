@@ -11,6 +11,23 @@ myrepos (1.20180727) UNRELEASED; urgency=medium
   * dgit plugin: pass -p to 'dgit fetch'.
     Ensures that 'dgit fetch' will work if the currently checked out
     branch does not include debian/control.
+  * Fix restow with stow plugin
+  * Fix copyright info for dgit plugin
+
+  [ Niko Tyni ]
+  * Fix crash on terminal size changes (Closes: #927154) (LP: #1799444)
+
+  [ Sean Whitton ]
+
+  [ Paul Wise ]
+  * Further document `mr run` (Closes: #835566)
+  * Make `mr config` use the current repo by default
+  * Add a recursive option for normally non-recursive commands
+  * Add a recursive mode for `mr config` (Closes: #944773)
+  * Allow overriding jobs config on cmdline (Closes: #807245)
+  * Fix deleting config items
+  * Code cleanups and refactoring
+  * Packaging updates
 
  -- Joey Hess <id@joeyh.name>  Tue, 21 Jan 2020 15:12:43 -0400
 
