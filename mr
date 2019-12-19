@@ -417,7 +417,7 @@ If a number greater than 0 is specified, will recurse into repositories at
 most that many subdirectories deep. For example, with -r 2 it would recurse
 into ./src/foo, but not ./src/packages/bar.
 
-The "config" command has a recursive mode.
+The "config" and "register" commands have a recursive mode.
 
 =item -j [number]
 
@@ -2050,7 +2050,11 @@ sub dispatch {
 		}
 	}
 	elsif ($action eq 'register') {
-		register(@ARGV);
+		if (defined $max_depth) {
+			
+		} else {
+			register(@ARGV);
+		}
 	}
 	elsif ($action eq 'bootstrap') {
 		bootstrap();
