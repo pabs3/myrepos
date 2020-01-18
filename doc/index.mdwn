@@ -80,6 +80,7 @@ Some more examples of things it can do include:
 
 * [drupal](https://github.com/wimleers/mr-drupal): simple way to manage drupal websites
 * [freeze](https://bitbucket.org/mforbes/mmfhg#rst-header-mr-un-freeze): record and restore VCS revision details
+* [github2mr](https://github.com/skx/github2mr): add your github repos to myrepos
 
 ## related software
 
