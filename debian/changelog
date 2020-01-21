@@ -1,3 +1,10 @@
+myrepos (1.20180727) UNRELEASED; urgency=medium
+
+  * Clarify documentation about multi-line shell commands in mrconfig file.
+    Closes: #685002
+
+ -- Joey Hess <id@joeyh.name>  Tue, 21 Jan 2020 15:12:43 -0400
+
 myrepos (1.20180726) unstable; urgency=medium
 
   [ Andrew Bradford ]
