@@ -1,4 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: myrepos
+Upstream-Contact: ircs://irc.freenode.net/vcs-home
 
 Files: *
 Copyright: (c) 2007-2011 Joey Hess <joeyh@debian.org>
