@@ -1,6 +1,6 @@
 # A module for working with dgit(1) repositories
 #
-# Copyright (C) 2017 Sean Whitton
+# Copyright (C) 2017, 2020 Sean Whitton
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -58,6 +58,18 @@
 # Instead, we extend git_update and git_register to obtain updates
 # from dgit-repos.
 
+# we obtain the source package name from git and pass it to dgit with
+# the latter's -p option, because the currently checked out branch may
+# not contain debian/control, which would cause dgit fetch without -p
+# to fail
+lib =
+    set_source () {
+        if [ -z "$source" ]; then
+            source=$(git cat-file blob dgit/dgit/$1:debian/control \
+                         | awk -F': ' '$1 ~ /Source/ { print $2 }')
+        fi
+    }
+
 # We can't use git_update_append because mr's built-in default `git
 # pull` will often fail on a `dgit/SUITE` branch.  After a `dgit
 # clone`, (i) `dgit/SUITE` has no upstream tracking branch, and (ii)
@@ -76,15 +88,17 @@ git_update =
     for suite in $(git show-ref | grep refs/remotes/dgit/dgit | cut -d/ -f5 ); do
         # skip if we just called `dgit pull` on this suite
         if ! [ "$current_branch" = "dgit/$suite" ]; then
-            dgit fetch $suite
+            set_source $suite
+            dgit -p$source fetch $suite
         fi
     done
 
 git_register_append =
     lines="cd '$MR_REPO'"
     for suite in $(git show-ref | grep refs/remotes/dgit/dgit | cut -d/ -f5 ); do
+        set_source $suite
         echo "Registering dgit suite: $suite in $MR_CONFIG"
-        lines="$lines; dgit fetch $suite"
+        lines="$lines; dgit -p$source fetch $suite"
     done
     if ! [ "$lines" = "cd '$MR_REPO'" ]; then
         mr -c "$MR_CONFIG" config "`pwd`" post_checkout="$lines"

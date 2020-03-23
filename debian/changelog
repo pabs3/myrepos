@@ -7,6 +7,11 @@ myrepos (1.20180727) UNRELEASED; urgency=medium
   [ lintian-brush ]
   * Move upstream name/contact fields to debian/copyright
 
+  [ Sean Whitton ]
+  * dgit plugin: pass -p to 'dgit fetch'.
+    Ensures that 'dgit fetch' will work if the currently checked out
+    branch does not include debian/control.
+
  -- Joey Hess <id@joeyh.name>  Tue, 21 Jan 2020 15:12:43 -0400
 
 myrepos (1.20180726) unstable; urgency=medium
