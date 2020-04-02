@@ -1,0 +1,16 @@
+I had a mr commit in /etc hang. Investigation showed it was trying to stat
+a path under /media/, to a drive that had automount enabled, but which
+happened to have its USB port turned off to save power. In this situation,
+any access to the drive's mountpoint can take several minutes for the
+automount to time out before it fails.
+
+It seems unncessary for mr run in /foo to cause mr to stat repos in /bar
+that it's not going to be working in. I don't think it's worth going to major
+lengths to avoid, eg if a repo has chain=true then it's reasonable for mr
+to want to read its mrconfig at startup along with all the rest. But this
+repo in /media did not have chain=true, it was just an unrelated repo to
+the one mr was going to operate in.
+
+Tracked the stat to the use of `safe_abs_path` in `loadconfig`.
+
+--[[Joey]]
