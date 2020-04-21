@@ -78,7 +78,7 @@ git_fake_bare_register =
 	remote="$(LC_ALL=C GIT_CONFIG=config git config --get branch.$branch.remote 2> /dev/null)" || remote=origin
 	url="$(LC_ALL=C GIT_CONFIG=config git config --get "remote.$remote.url")" || true
 	if [ -z "$url" ]; then
-		error "cannot determine git url"
+		url_error git fake bare
 	fi
 	worktree="$(git_get_worktree)"
 	echo "Registering git url: $url in $MR_CONFIG (with worktree $worktree)"
