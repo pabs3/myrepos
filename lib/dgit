@@ -76,7 +76,7 @@ lib =
 # the 'origin' remote might not exist on the remote end (it depends on
 # whether the package has ever been uploaded with `dgit push`)
 git_update =
-    current_branch="$(git rev-parse --abbrev-ref HEAD)"
+    current_branch="$(git symbolic-ref --quiet --short HEAD)"
     if [ "$(echo $current_branch | cut -s -d/ -f1)" = "dgit" ]; then
         # (1) above
         dgit pull
