@@ -2683,11 +2683,15 @@ cvs_register =
 	echo "Registering cvs repository $repo at root $root"
 	mr -c "$MR_CONFIG" config "`pwd`" checkout="cvs -d '$root' co -d '$MR_REPO' '$repo'"
 hg_register =
-	url=`hg showconfig paths.default`
+	if ! url=`hg showconfig paths.default` ; then
+		error "cannot determine hg url"
+	fi
 	echo "Registering mercurial repo url: $url in $MR_CONFIG"
 	mr -c "$MR_CONFIG" config "`pwd`" checkout="hg clone '$url' '$MR_REPO'"
 darcs_register =
-	url=`cat _darcs/prefs/defaultrepo`
+	if ! url=`cat _darcs/prefs/defaultrepo 2> /dev/null` ; then
+		error "cannot determine darcs url"
+	fi
 	echo "Registering darcs repository $url in $MR_CONFIG"
 	mr -c "$MR_CONFIG" config "`pwd`" checkout="darcs get '$url' '$MR_REPO'"
 git_bare_register =
