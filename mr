@@ -2666,10 +2666,30 @@ svn_register =
 	echo "Registering svn url: $url in $MR_CONFIG"
 	mr -c "$MR_CONFIG" config "$(pwd)" checkout="svn co '$url' '$MR_REPO'"
 git_register =
-	branch="$(LC_ALL=C git symbolic-ref --quiet --short HEAD)" || branch=master
-	remote="$(LC_ALL=C git config --get branch.$branch.remote 2> /dev/null)" || remote=origin
-	url="$(LC_ALL=C git config --get "remote.$remote.url")" || true
-	if [ -z "$url" ]; then
+	export LC_ALL=C
+	branch=$(git symbolic-ref --quiet --short HEAD) || branch=master
+	# limit the amount of branch parent lookups
+	# so that there isn't an infinite lookup loop
+	for i in $(seq 1 10) ; do
+		parent=$(git config --get "branch.$branch.merge") || true
+		remote=$(git config --get "branch.$branch.remote") || true
+		branch=${parent#refs/heads/}
+		if [ "$remote" != . ] ; then
+			break;
+		fi
+	done
+	if [ "$remote" = . ] ; then
+		remote=
+	fi
+	if [ -z "$remote" ] ; then
+		remote=origin
+	fi
+	url=$(git config --get "remote.$remote.url") || true
+	if [ -z "$url" ] ; then
+		remote=$(git remote | head -n1)
+		url=$(git config --get "remote.$remote.url") || true
+	fi
+	if [ -z "$remote" ] ; then
 		url_error git
 	fi
 	echo "Registering git url: $url in $MR_CONFIG"
