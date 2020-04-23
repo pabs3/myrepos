@@ -1,0 +1,9 @@
+The forum wasn't working due to incorrect ikiwiki settings.
+The settings have been fixed and the forum is now working!
+
+If you have a topic to discuss, jump on the forum and
+share your myrepos config, tips, tricks or questions.
+
+Thanks to Mat for letting us know about this.
+
+[[!meta author=pabs]]
