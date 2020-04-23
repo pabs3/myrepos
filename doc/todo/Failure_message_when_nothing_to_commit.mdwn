@@ -1,0 +1,7 @@
+This is more of an annoyance than a bug: I've got multiple Git repos that I want to snapshot and push to back them up, so I run `mr commit -m "Snapshot $(date)"`.  When there is nothing to commit in one of the repos, I get `mr commit: command failed`.  Is there something I can do to make that not be considered a failure?
+
+Thanks,
+-Mat
+
+
+By the way, I hope this is the right place to report these things.  I tried the Forums page but Branchable reported that it was locked.
