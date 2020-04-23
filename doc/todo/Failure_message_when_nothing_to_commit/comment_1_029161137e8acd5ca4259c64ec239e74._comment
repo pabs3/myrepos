@@ -1,0 +1,17 @@
+[[!comment format=mdwn
+ username="PaulWise"
+ avatar="http://cdn.libravatar.org/avatar/3bf5f3b29a3d68ddf11eb1a3d8c5dc65"
+ subject="try setting the commit/record commands for those directories"
+ date="2020-04-23T22:40:58Z"
+ content="""
+I'm not sure myrepos should be in the business of ignoring failure of VCS commands generally. I think the right way to go for this is for you to override the commit/record commands for the repositories you want this feature in, or for the parent directory if the repositories are in one directory or for all repositories if you don't have any where you do snapshots.
+
+
+    mr config \"$(pwd)\" commit='git commit -a && git push --all || true'
+    mr config \"$(pwd)\" record='git commit -a || true'
+
+    mr config DEFAULT git_commit='git commit -a && git push --all || true'
+    mr config DEFAULT git_record='git commit -a || true'
+
+I'll look into fixing the forum, thanks for reporting that.
+"""]]
