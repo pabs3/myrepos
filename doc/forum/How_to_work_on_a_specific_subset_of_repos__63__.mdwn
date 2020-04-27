@@ -1,0 +1,25 @@
+I often want to run a specific operation on a fixed subset of repos.
+The operation itself is valid for all repos, just I usually don't want to run it when I am doing specific tasks.
+E.g. when I am working on TaskA, I only want the operation to run on repo1 and repo3, whereas when I am running TaskB
+I want to run them on repo2 and repo3.
+
+Is there some way to preselect a (potentially large) list of repos to run an operation on?
+Ideally, I would imaging to add some kind of tags or labels on the repos section so it is specific to the repo
+and not coded in the operation itself and then have mr select the repos with the specific tags?
+
+E.g. something like this pseudo code
+
+    cat .mrconfig
+    [repo1]
+    tag = TaskA
+    
+    [repo2]
+    tag = TaskB
+    
+    [repo3]
+    tag = TaskA TaskB
+
+and then run the update operation with something like
+
+    mr --select-repos-with-tags=TaskA  update
+
