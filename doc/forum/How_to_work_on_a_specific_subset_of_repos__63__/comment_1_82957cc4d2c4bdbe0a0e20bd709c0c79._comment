@@ -1,0 +1,10 @@
+[[!comment format=mdwn
+ username="PaulWise"
+ avatar="http://cdn.libravatar.org/avatar/3bf5f3b29a3d68ddf11eb1a3d8c5dc65"
+ subject="no easy way to do this yet"
+ date="2020-04-30T11:42:15Z"
+ content="""
+I can see how tag based classification of repos would be really useful and I would welcome a patch for that, but until someone writes it, there is no easy way to do this, especially if the subsets overlap. For now the best option is to split each subset out into a separate .mrconfig-foo config and have your global .mrconfig file include all the subsets. If your subsets overlap then keep each config file separate without includes. Then when you want to run on a subset, you simply tell mr to use the config file for that subset.
+
+
+"""]]
