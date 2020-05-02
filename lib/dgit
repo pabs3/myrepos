@@ -101,5 +101,5 @@ git_register_append =
         lines="$lines; dgit -p$source fetch $suite"
     done
     if ! [ "$lines" = "cd '$MR_REPO'" ]; then
-        mr -c "$MR_CONFIG" config "`pwd`" post_checkout="$lines"
+        mr -c "$MR_CONFIG" config "$(pwd)" post_checkout="$lines"
     fi

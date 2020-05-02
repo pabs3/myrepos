@@ -134,7 +134,7 @@ lib =
             stow_common_opts="-t $STOW_TARGET -d $STOW_DIR"
         fi
         STOW="${STOW_COMMAND:-stow}"
-        case "`$STOW --version`" in
+        case "$($STOW --version)" in
             'version 1.*')
                 stow_common_opts="$stow_common_opts -p"
                 ;;
@@ -206,7 +206,7 @@ lib =
         symlink="$1"
         required_target="$2"
         if [ -L "$symlink" ]; then
-            actual_target="`readlink $symlink`"
+            actual_target="$(readlink $symlink)"
             if [ "$actual_target" = "$required_target" ]; then
                 return
             else

@@ -22,7 +22,7 @@ lib =
 		git clone --no-checkout "$url" "$repo"
 		cd "$repo"
 		mkdir -p "$worktree"
-		PWD="`pwd`"
+		PWD="$(pwd)"
 		mv .git/* .
 		rmdir .git
 		GIT_DIR="$PWD" git read-tree HEAD
@@ -82,7 +82,7 @@ git_fake_bare_register =
 	fi
 	worktree="$(git_get_worktree)"
 	echo "Registering git url: $url in $MR_CONFIG (with worktree $worktree)"
-	mr -c "$MR_CONFIG" config "`pwd`" \
+	mr -c "$MR_CONFIG" config "$(pwd)" \
 		checkout="git_fake_bare_checkout '$url' '$MR_REPO' '$worktree'"
 
 # vim:sw=8:sts=0:ts=8:noet

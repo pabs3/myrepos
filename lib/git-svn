@@ -35,12 +35,12 @@ git_svn_test = perl:
 	`GIT_CONFIG="$ENV{MR_REPO}"/.git/config git config --get svn-remote.svn.url` ne ""
 
 git_svn_register =
-	url="`LC_ALL=C git config --get svn-remote.svn.url`" || true
+	url="$(LC_ALL=C git config --get svn-remote.svn.url)" || true
 	if [ -z "$url" ]; then
 		error "cannot determine git svn url"
 	fi
 	echo "Registering git svn url: $url in $MR_CONFIG"
-	mr -c "$MR_CONFIG" config "`pwd`" checkout="git svn clone '$url' '$MR_REPO'"
+	mr -c "$MR_CONFIG" config "$(pwd)" checkout="git svn clone '$url' '$MR_REPO'"
 
 
 # vim:sw=8:sts=0:ts=8:noet
