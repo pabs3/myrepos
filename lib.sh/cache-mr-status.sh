@@ -1,3 +1,5 @@
+# shellcheck shell=bash
+
 # Copyright 2018 Paul Wise <pabs3@bonedaddy.net>
 # Licensed under the GNU GPL version 2 or later.
 
