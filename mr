@@ -2436,6 +2436,7 @@ ls = list
 [DEFAULT]
 order = 10
 lib =
+	# shellcheck shell=sh
 	url_error() {
 		info "cannot determine $* url"
 		info 'to register a local-only repository, run this:'
