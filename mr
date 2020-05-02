@@ -2443,14 +2443,14 @@ lib =
 		exit 1
 	}
 	error() {
-		echo "mr: $@" >&2
+		echo "mr: $*" >&2
 		exit 1
 	}
 	warning() {
-		echo "mr (warning): $@" >&2
+		echo "mr (warning): $*" >&2
 	}
 	info() {
-		echo "mr: $@" >&2
+		echo "mr: $*" >&2
 	}
 	hours_since() {
 		if [ -z "$1" ] || [ -z "$2" ]; then
@@ -2764,7 +2764,7 @@ offline =
 	touch ~/.mrlog
 	info "offline mode enabled"
 remember =
-	info "remembering command: 'mr $@'"
+	info "remembering command: 'mr $*'"
 	command="mr -d '$(pwd)' $MR_SWITCHES"
 	for w in "$@"; do
 		command="$command '$w'"
