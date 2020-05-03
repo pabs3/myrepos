@@ -657,6 +657,16 @@ specified action. Similarly, "post_action" commands are run after mr
 successfully performs the specified action. For example, "pre_commit" is
 run before committing; "post_update" is run after updating.
 
+=item _args
+
+Any setting can be suffixed with C<_args>, this will override the argument
+list for the action. The C<_args_prepend> and C<_args_append> suffixes can
+be used to modify the argument list instead of overriding it. If the command
+does not reference the argument list (using C<"$@">) then changing the
+argument list will have no effect on the command.
+
+This is useful for passing options to actions.
+
 =item _prepend
 
 Any setting can be suffixed with C<_prepend>, to prepend an additional
