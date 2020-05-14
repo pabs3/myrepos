@@ -792,6 +792,7 @@ my (@ok, @failed, @skipped);
 
 main();
 
+# FIXME: use String::ShellQuote when available
 sub shellquote {
 	my $i=shift;
 	$i=~s/'/'"'"'/g;
@@ -815,6 +816,7 @@ sub runsh {
 		return 1;
 	}
 
+	# FIXME: stop quoting parameters
 	my $quotedparams=join(" ", (map { shellquote($_) } @$params));
 	my $lib=exists $config{$topdir}{$subdir}{lib} ?
 	               $config{$topdir}{$subdir}{lib}."\n" : "";
@@ -822,9 +824,13 @@ sub runsh {
 		print "mr library now: >>$lib<<\n";
 		$lastlib=$lib;
 	}
+	# FIXME: use an array instead
 	my $shellcode="set -e;".$lib.
+	# FIXME: use "$@" instead of the quoted parameters
+	# FIXME: rename my_sh to mr_sh
 		"my_sh(){ $command\n }; my_sh $quotedparams";
 	print "mr $action: running $action >>$command<<\n" if $verbose;
+	# FIXME: pass an array instead of merged shellcode
 	$runner->($shellcode);
 }
 
@@ -975,6 +981,8 @@ sub terminal_friendly_spawn {
 		$pty->close;
 	}
 	else {
+		# FIXME: replace this with IPC::Run3
+		# my $output; run3 \@cmd, undef, \$output, \$output;
 		$output = qx/$sh 2>&1/;
 		print $output_cache $output if defined $output && defined $output_cache;
 	}
@@ -1101,6 +1109,7 @@ sub action {
 		if (defined $testcommand) {
 			my $ret=runsh "$testname test", $topdir, $subdir,
 				$testcommand, [$action],
+                                # FIXME: use an array!
 				sub { system(shift()) };
 			if ($ret == -1) {
 				print STDERR "mr $action: failed to execute: $!\n";
@@ -1221,6 +1230,7 @@ sub action {
 					return terminal_friendly_spawn($actionmsg, $sh, $quiet, $minimal, $jobs, $cache_ret_fh, $cache_output_fh);
 				}
 				else {
+					# FIXME: use an array!
 					system($sh);
 				}
 			};
@@ -1321,6 +1331,7 @@ sub hook {
 				return terminal_friendly_spawn(undef, $sh, $quiet, $minimal, $jobs, $cache_ret_fh, $cache_output_fh);
 			}
 			else {
+				# FIXME: use an array
 				system($sh);
 			}
 		};
