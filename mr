@@ -34,6 +34,8 @@ B<mr> [options] bootstrap src [directory]
 
 B<mr> [options] register [repository]
 
+B<mr> [options] clone [repository [directory]]
+
 B<mr> [options] config section ["setting=[value]" ...]
 
 B<mr> [options] action [params ...]
