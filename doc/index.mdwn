@@ -88,6 +88,7 @@ Some more examples of things it can do include:
 * [gita](https://github.com/nosarthur/gita): manage multiple git repos
 * [gitbatch](https://github.com/isacikgoz/gitbatch): manage multiple git repos in one place
 * [git-plus](https://github.com/tkrajina/git-plus) multi: run commands in multiple git repos
+* [git-repo-updater](https://github.com/earwig/git-repo-updater) gitup: update multiple git repos at once
 * [mu-repo](https://fabioz.github.io/mu-repo/): help working with multiple git repos
 * [ghq](https://github.com/motemen/ghq): manage remote repository clones
 * [uncommitted](https://github.com/brandon-rhodes/uncommitted): find uncommitted changes in VCS directories
