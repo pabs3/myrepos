@@ -1,0 +1,8 @@
+[[!comment format=mdwn
+ username="pabs"
+ subject="""reimplemented"""
+ date="2020-04-21T15:08:12+00:00Z"
+ content="""
+I ended up reimplementing this feature in a better way.
+It handles the corner cases yours doesn't and other issues too.
+"""]]
