@@ -818,6 +818,9 @@ sub runsh {
 	my $quotedparams=join(" ", (map { shellquote($_) } @$params));
 	my $lib=exists $config{$topdir}{$subdir}{lib} ?
 	               $config{$topdir}{$subdir}{lib}."\n" : "";
+	if (exists $config{$topdir}{$subdir}{"lib_$action"}){
+		$lib .= $config{$topdir}{$subdir}{"lib_$action"}."\n"
+	}
 	if ($verbose && (! defined $lastlib || $lastlib ne $lib)) {
 		print "mr library now: >>$lib<<\n";
 		$lastlib=$lib;
