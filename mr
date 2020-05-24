@@ -2493,6 +2493,68 @@ lib =
 		fi
 	}
 
+lib_register =
+	git_register() {
+		export LC_ALL=C
+		branch=$(git symbolic-ref --quiet --short HEAD) || branch=master
+		# limit the amount of branch parent lookups
+		# so that there isn't an infinite lookup loop
+		for i in $(seq 1 10) ; do
+			parent=$(git config --get "branch.$branch.merge") || true
+			remote=$(git config --get "branch.$branch.remote") || true
+			branch=${parent#refs/heads/}
+			if [ "$remote" != . ] ; then
+				break;
+			fi
+		done
+		if [ "$remote" = . ] ; then
+			remote=
+		fi
+		if [ -z "$remote" ] ; then
+			remote=origin
+		fi
+		url=$(git config --get "remote.$remote.url") || true
+		if [ -z "$url" ] ; then
+			remote=$(git remote | head -n1)
+			url=$(git config --get "remote.$remote.url") || true
+		fi
+		if [ -z "$remote" ] ; then
+			url_error git
+		fi
+		echo "Registering git url: $url in $MR_CONFIG"
+		if [ "x$1" = x--all ] ; then
+			args=$(
+				git config --get-regexp '^remote\.([^.]+)\.(url|fetch)$' |
+				grep -Evi "^remote\.$remote\.(url|fetch) " |
+				sed "s/'/'\\''/;s/ /=/;s/^/-c '/;s/$/'/" |
+				head -c -1 |
+				tr '\n' ' '
+			)
+			if [ -n "$args" ] ; then
+				echo "Registering other git remotes too"
+			fi
+			args=" $args"
+		else
+			args=''
+			remote_count=$(
+				git config --get-regexp '^remote\.([^.]+)\.(url|fetch)$' |
+				grep -Evi "^remote\.$remote\.(url|fetch) " |
+				sed -n 's/^remote\.\([^.]*\)\..*/\1/p' |
+				sort -u |
+				wc -l
+			)
+			if [ "$remote_count" -ne 0 ] ; then
+				echo "Use the --all option to register the other git remotes too"
+			fi
+		fi
+		args="$args$*"
+		if [ "$remote" = origin ] ; then
+			mr -c "$MR_CONFIG" config "$(pwd)" checkout="git clone$args '$url' '$MR_REPO'"
+		else
+			mr -c "$MR_CONFIG" config "$(pwd)" checkout="git clone$args --origin '$remote' '$url' '$MR_REPO'"
+		fi
+	}
+
 svn_test = perl: -d "$ENV{MR_REPO}/.svn"
 git_test = perl: -e "$ENV{MR_REPO}/.git"
 bzr_test = perl: -d "$ENV{MR_REPO}/.bzr"
@@ -2666,63 +2728,7 @@ svn_register =
 	echo "Registering svn url: $url in $MR_CONFIG"
 	mr -c "$MR_CONFIG" config "$(pwd)" checkout="svn co '$url' '$MR_REPO'"
 git_register =
-	export LC_ALL=C
-	branch=$(git symbolic-ref --quiet --short HEAD) || branch=master
-	# limit the amount of branch parent lookups
-	# so that there isn't an infinite lookup loop
-	for i in $(seq 1 10) ; do
-		parent=$(git config --get "branch.$branch.merge") || true
-		remote=$(git config --get "branch.$branch.remote") || true
-		branch=${parent#refs/heads/}
-		if [ "$remote" != . ] ; then
-			break;
-		fi
-	done
-	if [ "$remote" = . ] ; then
-		remote=
-	fi
-	if [ -z "$remote" ] ; then
-		remote=origin
-	fi
-	url=$(git config --get "remote.$remote.url") || true
-	if [ -z "$url" ] ; then
-		remote=$(git remote | head -n1)
-		url=$(git config --get "remote.$remote.url") || true
-	fi
-	if [ -z "$remote" ] ; then
-		url_error git
-	fi
-	echo "Registering git url: $url in $MR_CONFIG"
-	if [ "x$1" = x--all ] ; then
-		args=$(
-			git config --get-regexp '^remote\.([^.]+)\.(url|fetch)$' |
-			grep -Evi "^remote\.$remote\.(url|fetch) " |
-			sed "s/'/'\\''/;s/ /=/;s/^/-c '/;s/$/'/" |
-			head -c -1 |
-			tr '\n' ' '
-		)
-		if [ -n "$args" ] ; then
-			echo "Registering other git remotes too"
-		fi
-		args=" $args"
-	else
-		args=''
-		remote_count=$(
-			git config --get-regexp '^remote\.([^.]+)\.(url|fetch)$' |
-			grep -Evi "^remote\.$remote\.(url|fetch) " |
-			sed -n 's/^remote\.\([^.]*\)\..*/\1/p' |
-			sort -u |
-			wc -l
-		)
-		if [ "$remote_count" -ne 0 ] ; then
-			echo "Use the --all option to register the other git remotes too"
-		fi
-	fi
-	if [ "$remote" = origin ] ; then
-		mr -c "$MR_CONFIG" config "$(pwd)" checkout="git clone$args '$url' '$MR_REPO'"
-	else
-		mr -c "$MR_CONFIG" config "$(pwd)" checkout="git clone$args --origin '$remote' '$url' '$MR_REPO'"
-	fi
+	git_register
 bzr_register =
 	url="$(LC_ALL=C bzr info . | grep -iE 'checkout of branch|parent branch' | awk '{print $NF}' | head -n 1)"
 	if [ -z "$url" ]; then
@@ -2751,14 +2757,8 @@ darcs_register =
 	echo "Registering darcs repository $url in $MR_CONFIG"
 	mr -c "$MR_CONFIG" config "$(pwd)" checkout="darcs get '$url' '$MR_REPO'"
 git_bare_register =
-	branch="$(LC_ALL=C GIT_CONFIG=config git symbolic-ref --quiet --short HEAD)" || branch=master
-	remote="$(LC_ALL=C GIT_CONFIG=config git config --get branch.$branch.remote 2> /dev/null)" || remote=origin
-	url="$(LC_ALL=C GIT_CONFIG=config git config --get "remote.$remote.url")" || true
-	if [ -z "$url" ]; then
-		url_error git bare
-	fi
-	echo "Registering git url: $url in $MR_CONFIG"
-	mr -c "$MR_CONFIG" config "$(pwd)" checkout="git clone --bare '$url' '$MR_REPO'"
+	export GIT_CONFIG=config
+	git_register --bare
 vcsh_register =
 	mr_repo_basename=$(basename "$MR_REPO" .git)
 	branch="$(LC_ALL=C vcsh run "$mr_repo_basename" git symbolic-ref --quiet --short HEAD)" || branch=master
