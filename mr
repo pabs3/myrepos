@@ -2693,7 +2693,36 @@ git_register =
 		url_error git
 	fi
 	echo "Registering git url: $url in $MR_CONFIG"
-	mr -c "$MR_CONFIG" config "$(pwd)" checkout="git clone '$url' '$MR_REPO'"
+	if [ "x$1" = x--all ] ; then
+		args=$(
+			git config --get-regexp '^remote\.([^.]+)\.(url|fetch)$' |
+			grep -Evi "^remote\.$remote\.(url|fetch) " |
+			sed "s/'/'\\''/;s/ /=/;s/^/-c '/;s/$/'/" |
+			head -c -1 |
+			tr '\n' ' '
+		)
+		if [ -n "$args" ] ; then
+			echo "Registering other git remotes too"
+		fi
+		args=" $args"
+	else
+		args=''
+		remote_count=$(
+			git config --get-regexp '^remote\.([^.]+)\.(url|fetch)$' |
+			grep -Evi "^remote\.$remote\.(url|fetch) " |
+			sed -n 's/^remote\.\([^.]*\)\..*/\1/p' |
+			sort -u |
+			wc -l
+		)
+		if [ "$remote_count" -ne 0 ] ; then
+			echo "Use the --all option to register the other git remotes too"
+		fi
+	fi
+	if [ "$remote" = origin ] ; then
+		mr -c "$MR_CONFIG" config "$(pwd)" checkout="git clone$args '$url' '$MR_REPO'"
+	else
+		mr -c "$MR_CONFIG" config "$(pwd)" checkout="git clone$args --origin '$remote' '$url' '$MR_REPO'"
+	fi
 bzr_register =
 	url="$(LC_ALL=C bzr info . | grep -iE 'checkout of branch|parent branch' | awk '{print $NF}' | head -n 1)"
 	if [ -z "$url" ]; then
