@@ -792,11 +792,19 @@ my (@ok, @failed, @skipped);
 
 main();
 
-# FIXME: use String::ShellQuote when available
-sub shellquote {
-	my $i=shift;
-	$i=~s/'/'"'"'/g;
-	return "'$i'";
+BEGIN {
+	eval {
+		require String::ShellQuote;
+		import String::ShellQuote;
+		*shellquote = String::ShellQuote::shell_quote;
+		1;
+	} or do {
+		*shellquote = sub {
+			my $i=shift;
+			$i=~s/'/'"'"'/g;
+			return "'$i'";
+		};
+	}
 }
 
 # Runs a shell command using a supplied function.
