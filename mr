@@ -825,6 +825,7 @@ sub runsh {
 	my $shellcode="set -e;".$lib.
 		"my_sh(){ $command\n }; my_sh $quotedparams";
 	print "mr $action: running $action >>$command<<\n" if $verbose;
+	# FIXME: write shellcode to a temporary file and run that?
 	$runner->($shellcode);
 }
 
