@@ -2439,13 +2439,6 @@ ls = list
 [DEFAULT]
 order = 10
 lib =
-	url_error() {
-		info "cannot determine $* url"
-		info 'to register a local-only repository, run this:'
-		# shellcheck disable=SC2016 # this prints the exact command needed
-		echo 'mr config "$(pwd)" checkout="error no url known for repo"' >&2
-		exit 1
-	}
 	error() {
 		echo "mr: $*" >&2
 		exit 1
@@ -2495,6 +2488,15 @@ lib =
 			return 0
 		fi
 	}
+lib_register =
+	url_error() {
+		info "cannot determine $* url"
+		info 'to register a local-only repository, run this:'
+		# shellcheck disable=SC2016 # this prints the exact command needed
+		echo 'mr config "$(pwd)" checkout="error no url known for repo"' >&2
+		exit 1
+	}
+
 
 svn_test = perl: -d "$ENV{MR_REPO}/.svn"
 git_test = perl: -e "$ENV{MR_REPO}/.git"
