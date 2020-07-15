@@ -329,6 +329,18 @@ system.
 Specifies the topmost directory that B<mr> should work in. The default is
 the current working directory.
 
+FIXME: decide on the short option for this
+
+=item -.
+
+=item -u
+
+=item --detect-unregistered
+
+Detect unregistered repositories and act as if they were registered.
+The default is to recurse through the directory tree but the recursion
+is affected by the --recurse and --no-recurse options.
+
 =item -c mrconfig
 
 =item --config mrconfig
