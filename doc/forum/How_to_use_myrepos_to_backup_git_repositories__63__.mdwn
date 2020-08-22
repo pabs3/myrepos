@@ -1,0 +1,5 @@
+I am wondering if/how myrepos can be used to backup all (git) repositories under its control. By "backup", I mean
+1. for every repository, zip up the repository data (ie, the `.git` subdir) into a file named `repository_name_<timestamp>.zip` (or tgz or whatever).
+2. move that zip file into a globally specified directory (same for all repositories)
+
+Is there something already prepared that I can use?
