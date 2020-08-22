@@ -1,0 +1,17 @@
+[[!comment format=mdwn
+ username="benedikt.ahrens@cf5973f8fa2626d8a2f6d50bfaebd3f3cc6301d3"
+ nickname="benedikt.ahrens"
+ avatar="http://cdn.libravatar.org/avatar/19c32cb4717d27ee6c4dda8bf3c80716"
+ subject="Possible solution"
+ date="2020-08-22T19:34:58Z"
+ content="""
+It took me a while, but for now I have found
+
+```
+[DEFAULT]
+backup = git bundle create /path/to/backupdir/$(basename $(git rev-parse --show-toplevel)).gitrepo --all
+```
+If anybody has any comments on how to improve this, please let me know.
+Thanks,
+Benedikt
+"""]]
