@@ -1,0 +1,14 @@
+[[!comment format=mdwn
+ username="PaulWise"
+ avatar="http://cdn.libravatar.org/avatar/3bf5f3b29a3d68ddf11eb1a3d8c5dc65"
+ subject="I would use restic/borg instead"
+ date="2020-08-23T01:07:02Z"
+ content="""
+Personally I would do backups using a regular backup tool like restic or borg. This way you also backup the git config for each repository and any uncommitted changes or modifications to the index and you also get history of those things. Just using git bundle like that will miss those things.
+
+BTW: my use of the mr backup command is per-repository and I use it to rsync remote repos locally. I then backup those with restic.
+
+    [repos/chromium-bsu]
+    checkout = git clone 'https://git.code.sf.net/p/chromium-bsu/code' 'code'
+    backup = rsync --archive --compress --hard-links --delete --copy-unsafe-links git.code.sf.net::p/chromium-bsu/ ~/backup/repos/chromium-bsu/
+"""]]
