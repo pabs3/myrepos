@@ -90,6 +90,7 @@ Some more examples of things it can do include:
 * [git-plus](https://github.com/tkrajina/git-plus) multi: run commands in multiple git repos
 * [git-repo-updater](https://github.com/earwig/git-repo-updater) gitup: update multiple git repos at once
 * [mu-repo](https://fabioz.github.io/mu-repo/): help working with multiple git repos
+* [mgitstatus](https://github.com/fboender/multi-git-status): show status in multiple git repos
 * [ghq](https://github.com/motemen/ghq): manage remote repository clones
 * [uncommitted](https://github.com/brandon-rhodes/uncommitted): find uncommitted changes in VCS directories
 * [kas](https://github.com/siemens/kas): bitbake repository management tool
