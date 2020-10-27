@@ -1,0 +1,3 @@
+git_fsck = git fsck --no-progress "$@"
+hg_fsck = hg verify "$@"
+fsck_default = true
