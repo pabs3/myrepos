@@ -803,15 +803,17 @@ sub shellquote {
 # will be available in the shell as $1, $2, etc.
 my $lastlib;
 sub runsh {
-	my ($action, $topdir, $subdir, $command, $params, $runner) = @_;
+	my ($action, $topdir, $subdir, $command, $params, $runner, $nothing_runner) = @_;
 
 	# optimisation: avoid running the shell for true and false
 	if ($command =~ /^\s*true\s*$/) {
 		$?=0;
+		$nothing_runner->();
 		return 0;
 	}
 	elsif ($command =~ /^\s*false\s*$/) {
 		$?=0;
+		$nothing_runner->();
 		return 1;
 	}
 
@@ -1196,7 +1198,8 @@ sub action {
 		}
 
 		my $actionmsg = actionmsg($action, $fulldir);
-		print "$actionmsg\n" unless !$jobs || $jobs > 1 || $quiet || $minimal || $save_cache || $print_cache;
+		my $terminal_friendly_spawn = !$jobs || $jobs > 1 || $quiet || $minimal;
+		print "$actionmsg\n" unless $terminal_friendly_spawn || $save_cache || $print_cache;
 
 		my ($hookret, $hook_out)=hook("pre_$action", $topdir, $subdir);
 		return $hookret if $hookret != OK;
@@ -1217,12 +1220,14 @@ sub action {
 					$save_cache = 1;
 					($cache_ret_fh, $cache_output_fh) = cache_open($action, $fulldir, !$save_cache);
 				}
-				if (!$jobs || $jobs > 1 || $quiet || $minimal || (defined $cache_ret_fh && defined $cache_output_fh)) {
+				if ($terminal_friendly_spawn || (defined $cache_ret_fh && defined $cache_output_fh)) {
 					return terminal_friendly_spawn($actionmsg, $sh, $quiet, $minimal, $jobs, $cache_ret_fh, $cache_output_fh);
 				}
 				else {
 					system($sh);
 				}
+			}, sub {
+				print "$actionmsg\n" if $terminal_friendly_spawn;
 			};
 
 		cache_done($action, $fulldir, !$save_cache, $cache_ret_fh, $cache_output_fh);
