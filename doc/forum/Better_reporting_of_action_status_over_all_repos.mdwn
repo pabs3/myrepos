@@ -1,0 +1,15 @@
+Hi,
+
+Thank you very much for myrepos, it is really a great tool which I have integrated in my daily workflow and which improved my productivity a lot!
+
+I am successfully using it for ~100 repos (both personal and community-based) and one thing that I am trying to achieve is better reporting of the overall status of an action. For instance, I do an `mr rebase` at the root of my account and it will rebase all my personal branches against their main ones. This sometimes fails though and myreports `mr rebase: finished (115 ok, 3 failed)`
+
+The problem is that I now have to scroll up through the long output to find which repos failed w/ their rebase. I would like myrepos to report the directory/repo paths into which there was a problem but I have not found a way to do that. Each `rebase` action runs in its own shell and I don't have an easy way to transfer the state (failed or not) into a global variable that myrepos could check. The closest I can think of is to put those failed paths into an exported shell variable that a wrapper script running myrepos would check at the end.
+
+Looking into the myrepos source, I don't see an easy way here (the `showstats()` routine uses counters for `ok/failed/skipped`, but does not appear to store repo paths there).
+
+Is there a way to achieve what I want here?
+
+Thanks much for your help!
+
+Vincent
