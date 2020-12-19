@@ -1,0 +1,33 @@
+[[!comment format=mdwn
+ username="PaulWise"
+ avatar="http://cdn.libravatar.org/avatar/3bf5f3b29a3d68ddf11eb1a3d8c5dc65"
+ subject="available workarounds"
+ date="2020-12-19T00:14:22Z"
+ content="""
+Hi Vincent, glad you like myrepos :)
+
+Personally, I think the right way to deal with your situation is for each failing rebase to spawn a shell for each failure, unless you use -j, but if you do use -j you could spawn an xterm instead of a shell. Right now I am using a [git-rebase-all](https://paste.debian.net/plain/1177538) script I wrote for this purpose, you could adapt it to your situation.
+
+BTW, if you have long-running branches that often have rebase failures, I suggest using [git-imerge](https://github.com/mhagger/git-imerge) and or [mergeify](https://github.com/brooksdavis/mergify). They make rebasing much easier by bisecting your rebase failures and then letting you rebase over the exact commit causing the rebase failure, splitting the rebase up into several much smaller rebases that you can incrementally solve. I've only used git-imerge, it has a bit of a learning curve, but once you get used to it, it becomes invaluable for this use-case.
+
+Without using git-rebase-all and without any changes to the myrepos code, there are two possible ways you can do what you asked for:
+
+Use the \"offline\" mode, which records what commands failed so you can run them again when online. First you turn on \"offline\" mode, then run the rebase command, (optionally) inspect the log of failed commands and then re-run only the failed commands. The offline mode is mainly meant for `mr fetch` but it works for any situation where you want to log failed commands.
+
+```
+mr offline
+mr rebase
+cat ~/.mrlog
+mr online
+```
+
+Use the --cache option and then inspect the cache after myrepos has run. The cache contains separate files for both the command exit code and the text output of each repository. So you can run the rebase in cache mode and then inspect the cache of the rebase command return codes. Something like this should print the list of dirs (relative to your $HOME dir) where the rebase failed:
+
+```
+mr --cache rebase
+find ~/.mrcache/rebase/ -name mr_ret -print0 |
+xargs -0 grep -lvF 0 |
+sed 's/mr_ret//' | 
+sed 's@^$HOME/.mrcache/rebase/$HOME@~@'
+```
+"""]]
