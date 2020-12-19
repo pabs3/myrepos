@@ -1,0 +1,8 @@
+[[!comment format=mdwn
+ username="PaulWise"
+ avatar="http://cdn.libravatar.org/avatar/3bf5f3b29a3d68ddf11eb1a3d8c5dc65"
+ subject="~/.mrcache"
+ date="2020-12-19T00:17:40Z"
+ content="""
+PS: when looking at the mrepos cache, please note that the mr_output files contain terminal escape sequences for colour etc. You can use ansi2txt from [colorized-logs](https://github.com/kilobyte/colorized-logs) to strip out the terminal escape sequences.
+"""]]
