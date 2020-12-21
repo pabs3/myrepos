@@ -1,0 +1,8 @@
+[[!comment format=mdwn
+ username="PaulWise"
+ avatar="http://cdn.libravatar.org/avatar/3bf5f3b29a3d68ddf11eb1a3d8c5dc65"
+ subject="git knows the upstream branch"
+ date="2020-12-21T11:49:47Z"
+ content="""
+git stores the upstream branch and it has shortcuts `@{u}`, `@{upstream}`, `HEAD{u}`, `HEAD{upstream}`, `sandbox/vrubiolo/devel{u}`, `sandbox/vrubiolo/devel{upstream}`, see the [gitrevisions(7)](https://git-scm.com/docs/gitrevisions) manual page for details. The git-rebase-all script mentioned above uses the `@{u}` shortcut in order to avoid having to look up the upstream branch.
+"""]]
