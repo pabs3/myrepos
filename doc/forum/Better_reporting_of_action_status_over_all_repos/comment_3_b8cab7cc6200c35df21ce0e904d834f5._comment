@@ -1,0 +1,14 @@
+[[!comment format=mdwn
+ username="vrubiolo"
+ avatar="http://cdn.libravatar.org/avatar/e792d7730dbeb8190eb281016bac2786"
+ subject="comment 3"
+ date="2020-12-21T09:19:55Z"
+ content="""
+Hi Paul,
+
+Thanks for your answer and for all the good suggestions esp. on the tooling side for `git-imerge` and `mergify`. Your suggestion to start a shell (I am not using `-j`) is indeed an excellent one, as I will need to fix the rebase in one way or the other (so doing it right as the repos are processed is a good idea).
+
+On the rebase side, your `git-rebase-all` script is also a good suggestion. I am looking into ways to do automated rebases on different branches: say that I am working on `sandbox/vrubiolo/devel` which is branched off `origin/devel` (but has a remote on `origin/sandbox/vrubiolo/devel` so that I can push daily to backup my work), I want to rebase `sandbox/vrubiolo/devel` every morning on the new state of `origin/devel`. Right now, I need to store the `origin/devel` pointer in an array to know which branch I should rebase against. Is there a better way in your case?
+
+Thanks again for your prompt replies!
+"""]]
