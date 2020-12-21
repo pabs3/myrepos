@@ -1,0 +1,8 @@
+[[!comment format=mdwn
+ username="PaulWise"
+ avatar="http://cdn.libravatar.org/avatar/3bf5f3b29a3d68ddf11eb1a3d8c5dc65"
+ subject="git-mergify-rebase"
+ date="2020-12-21T23:34:00Z"
+ content="""
+Another option for rebasing is [git-mergify-rebase](https://github.com/CTSRD-CHERI/git-mergify-rebase).
+"""]]
