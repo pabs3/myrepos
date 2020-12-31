@@ -1,0 +1,14 @@
+[[!comment format=mdwn
+ username="joey"
+ subject="""comment 6"""
+ date="2020-12-31T17:19:39Z"
+ content="""
+The --stats option adds an output at the end like:
+
+	mr update: finished (2 failed)
+	mr update: (failed: src/foo src/bar)
+
+The name of this option could be better, the mnemonic
+for it is that it *expands* the normal stats output
+with more detail.
+"""]]
