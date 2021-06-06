@@ -27,11 +27,11 @@ git_svn_clean =
 	fi
 
 git_test = perl:
-	-d "$ENV{MR_REPO}/.git" &&
+	-d "$ENV{MR_REPO}/.git" && ! -d "$ENV{MR_REPO}/.git/svn" &&
 	`GIT_CONFIG="$ENV{MR_REPO}"/.git/config git config --get svn-remote.svn.url` eq ""
 
 git_svn_test = perl:
-	-d "$ENV{MR_REPO}/.git" &&
+	-d "$ENV{MR_REPO}/.git" && -d "$ENV{MR_REPO}/.git/svn" &&
 	`GIT_CONFIG="$ENV{MR_REPO}"/.git/config git config --get svn-remote.svn.url` ne ""
 
 git_svn_register =
