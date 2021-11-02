@@ -103,6 +103,7 @@ Some more examples of things it can do include:
 * [go-vcs](https://github.com/Masterminds/vcs): version control repository management for Golang
 * [v](https://github.com/ChristophBerg/dotfiles/blob/master/bin/v): version control subcommand wrapper
 * [silver-platter](https://www.jelmer.uk/silver-platter-intro.html): make automated changes in different version control repositories
+* [garden](https://github.com/davvid/garden/): manage git project dependencies and worktrees, custom commands
 
 ## news
 
