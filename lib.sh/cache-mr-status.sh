@@ -52,7 +52,8 @@ cache_mr_status_chdir () {
 	[ "$PWD" != "$dir" ] &&
 	mr_dir="$(builtin cd "$dir" && mr --no-recurse --no-print-action --no-print-subdir --no-print-footer list 2>/dev/null)" &&
 	[ "$(mr --no-recurse --no-print-action --no-print-subdir --no-print-footer list 2>/dev/null || true)" != "$mr_dir" ] &&
-	cache_mr_status "$dir"
+	cache_mr_status "$dir" ||
+	true
 }
 
 cd () {
