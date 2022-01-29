@@ -1,0 +1,2 @@
+In addition to the locations checked for .mrconfig, it would be nice to have mr check for an XDG compliant path. This should ideally be ${XDG_CONFIG_HOME}/mr/config.
+When using the XDG Base Directory user directories, it helps to keep the home directory clean and navigable.
