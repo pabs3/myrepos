@@ -1,3 +1,5 @@
+Add support for https://pijul.org/
+
 This is myrepos's todo list. Link items to [[todo/done]] when done.
 
 See also:
