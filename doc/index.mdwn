@@ -84,26 +84,26 @@ Some more examples of things it can do include:
 
 ## related software
 
-* [repo](https://android.googlesource.com/tools/repo): git repository management tool
-* [gita](https://github.com/nosarthur/gita): manage multiple git repos
-* [gitbatch](https://github.com/isacikgoz/gitbatch): manage multiple git repos in one place
+* [garden](https://github.com/davvid/garden/): manage git project dependencies and worktrees, custom commands
+* [ghq](https://github.com/motemen/ghq): manage remote repository clones
 * [git-plus](https://github.com/tkrajina/git-plus) multi: run commands in multiple git repos
 * [git-repo-updater](https://github.com/earwig/git-repo-updater) gitup: update multiple git repos at once
-* [mu-repo](https://fabioz.github.io/mu-repo/): help working with multiple git repos
-* [mgitstatus](https://github.com/fboender/multi-git-status): show status in multiple git repos
-* [ghq](https://github.com/motemen/ghq): manage remote repository clones
-* [uncommitted](https://github.com/brandon-rhodes/uncommitted): find uncommitted changes in VCS directories
+* [gita](https://github.com/nosarthur/gita): manage multiple git repos
+* [gitbatch](https://github.com/isacikgoz/gitbatch): manage multiple git repos in one place
+* [go-vcs](https://github.com/Masterminds/vcs): version control repository management for Golang
 * [kas](https://github.com/siemens/kas): bitbake repository management tool
+* [mgitstatus](https://github.com/fboender/multi-git-status): show status in multiple git repos
+* [mu-repo](https://fabioz.github.io/mu-repo/): help working with multiple git repos
+* [repo](https://android.googlesource.com/tools/repo): git repository management tool
+* [rosinstall](https://github.com/vcstools/rosinstall): source code workspace management tool
+* [silver-platter](https://www.jelmer.uk/silver-platter-intro.html): make automated changes in different version control repositories
+* [uncommitted](https://github.com/brandon-rhodes/uncommitted): find uncommitted changes in VCS directories
+* [v](https://github.com/ChristophBerg/dotfiles/blob/master/bin/v): version control subcommand wrapper
 * [VCS](https://www.greenend.org.uk/rjk/vcs/): a wrapper for version control systems
+* [vcs-repo-mgr](https://github.com/xolox/python-vcs-repo-mgr): version control repository manager
 * [vcstool](https://github.com/dirk-thomas/vcstool): work with multiple repositories
 * [vcstools](https://github.com/vcstools/vcstools): Python API wrapping version control systems
-* [rosinstall](https://github.com/vcstools/rosinstall): source code workspace management tool
 * [wstool](https://github.com/vcstools/wstool): maintain workspace of projects from multiple VCSes
-* [vcs-repo-mgr](https://github.com/xolox/python-vcs-repo-mgr): version control repository manager
-* [go-vcs](https://github.com/Masterminds/vcs): version control repository management for Golang
-* [v](https://github.com/ChristophBerg/dotfiles/blob/master/bin/v): version control subcommand wrapper
-* [silver-platter](https://www.jelmer.uk/silver-platter-intro.html): make automated changes in different version control repositories
-* [garden](https://github.com/davvid/garden/): manage git project dependencies and worktrees, custom commands
 
 ## news
 
