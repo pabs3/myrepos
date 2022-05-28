@@ -85,6 +85,7 @@ Some more examples of things it can do include:
 ## related software
 
 * [garden](https://github.com/davvid/garden/): manage git project dependencies and worktrees, custom commands
+* [gfold](https://github.com/nickgerace/gfold): lists status of multiple repositories, readonly, config file, rust
 * [ghq](https://github.com/motemen/ghq): manage remote repository clones
 * [git-plus](https://github.com/tkrajina/git-plus) multi: run commands in multiple git repos
 * [git-repo-updater](https://github.com/earwig/git-repo-updater) gitup: update multiple git repos at once
