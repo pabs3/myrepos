@@ -1,0 +1,10 @@
+[[!comment format=mdwn
+ username="PaulWise"
+ avatar="http://cdn.libravatar.org/avatar/3bf5f3b29a3d68ddf11eb1a3d8c5dc65"
+ subject="comment 1"
+ date="2022-09-09T14:09:59Z"
+ content="""
+If I understand correctly, you have multiple repositories that are organised in a certain way and you want to run status checks for a certain set of repos, but not necessarily all the repos in a single set are under one single directory. If so, this earlier thread seems similar to what you want and it seems there I suggested exactly what you are doing, but now I see that the code unconditionally loads the primary `~/.mrconfig` file. So, until a better way to do this gets added, I think what you need is to rename `~/.mrconfig` to `~/.mrconfig-global`, make it include your other mr config files, and then use `-c ~/.mrconfig-global` but when you want a different set of repos, you can use `-c` with the mr config file for the other set. Instead of using `-c`, you could also make `~/.mrconfig` a symlink to a mr config file for your \"current\" subset of repos.
+
+https://myrepos.branchable.com/forum/How_to_work_on_a_specific_subset_of_repos__63__/
+"""]]
