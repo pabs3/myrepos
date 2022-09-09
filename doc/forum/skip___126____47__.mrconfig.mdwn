@@ -1,0 +1,12 @@
+I have several mr configurations in different directories (this helps me to synchronize groups of repositories gradually).
+In `man mr`, it is stated
+
+    --config mrconfig
+           Use the specified mrconfig file. The default is to use both ~/.mrconfig as well as look for a .mrconfig file in the
+           current directory, or in one of its parent directories."
+
+How can I skip checking all repositories in ~/.mrconfig if I explicitly ask to use another config? I managed to solve that with `-n` option, like
+
+    mr -c mrconfig -t -n 1 status
+
+but `-n 1` looks a bit redundant and wrong for such case (I know that I can skip the *-t* flag with .mrtrust).
