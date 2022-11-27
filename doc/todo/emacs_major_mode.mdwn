@@ -1,0 +1,25 @@
+I am dreaming of an Emacs major mode to interact with my repos.
+
+I am thinking of something that, when invoked, would:
+
+ 1. run `mr status` against a given `.mrconfig` (~/.mrconfig, by
+    default, see [processes](https://www.gnu.org/software/emacs/manual/html_node/elisp/Processes.html))
+
+ 2. for reach repo, create a [button](https://www.gnu.org/software/emacs/manual/html_node/elisp/Buttons.html) that, when clicked, would
+    fire an action ([magit](https://magit.vc/) maybe? or some [project.el](https://www.gnu.org/software/emacs/manual/html_node/emacs/Projects.html) thing?
+    possibly some keybindings for each?)
+
+ 3. add a [keymap](https://www.gnu.org/software/emacs/manual/html_node/elisp/Keymaps.html) for the mode that would allow calling `mr update` (or
+    whatever?) on all (or marked?) repos
+
+ 4. possibly hide some parts of the `mr status` output
+    (e.g. [invisible text](https://www.gnu.org/software/emacs/manual/html_node/elisp/Invisible-Text.html), challenge here is to tell the mr output
+    from git (possibly with [overlays](https://www.gnu.org/software/emacs/manual/html_node/elisp/Overlays.html)?)
+
+I think the MVP is basically step 1 and 2 above, with something that
+drops me in the repo on "enter".
+
+Bonus points for a "redacted" mode that calls `mr -j$NCPU -m status`
+for a "only relevant" view.
+
+-- [[anarcat]]
