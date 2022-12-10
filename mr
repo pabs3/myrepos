@@ -2218,12 +2218,13 @@ sub bootstrap {
 			@downloader = ("scp", $1, $tmpconfig);
 		}
 		else {
-			@downloader = (qw(curl -A mr -L -s -o), $tmpconfig);
-			push(@downloader, "-k") if $insecure;
+			@downloader = qw(curl --user-agent mr --location --silent);
+			push(@downloader, '--output', $tmpconfig);
+			push(@downloader, '--insecure') if $insecure;
 			push(@downloader, '--', $src);
 		}
 		my $status = system(@downloader);
-		die "mr bootstrap: invalid SSL certificate for $src (consider -k)\n"
+		die "mr bootstrap: invalid SSL certificate for $src (consider -k/--insecure)\n"
 			if $downloader[0] eq 'curl' && $status >> 8 == 60;
 		die "mr bootstrap: download of $src failed\n" if $status != 0;
 	}
