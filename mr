@@ -1015,7 +1015,8 @@ sub cache_open {
 	my $file_mode = $read_only ? '<' : '>>';
 	my ($dir, $ret_name, $output_name) = cache_names($action, $fulldir);
 	if (!$read_only) {
-		system(qw(mkdir --parents --), $dir);
+		eval q{use File::Path qw(make_path);};
+		make_path($dir);
 		$ret_name .= '.tmp';
 		$output_name .= '.tmp';
 		unlink $ret_name, $output_name;
@@ -1049,6 +1050,7 @@ sub cache_remove {
 	my ($action, $fulldir) = @_;
 	my ($dir, $ret_name, $output_name) = cache_names($action, $fulldir);
 	unlink $ret_name, $output_name;
+	# FIXME: use File::Path remove_tree instead
 	system(qw(rmdir --ignore-fail-on-non-empty --parents --), $dir) if -d $dir;
 }
 
@@ -1150,6 +1152,7 @@ sub action {
 
 	if ($is_checkout && ! -d $dir) {
 		print "mr $action: creating parent directory $dir\n" if $verbose;
+		# FIXME: use File::Path make_path instead
 		system(qw(mkdir -p --), $dir);
 	}
 
@@ -2242,6 +2245,7 @@ sub bootstrap {
 
 	# Sanity check on destination directory.
 	if (! -e $dir) {
+		# FIXME: use File::Path make_path
 		system(qw(mkdir -p --), $dir);
 	}
 	chdir($dir) || die "chdir $dir: $!";
