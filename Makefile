@@ -21,6 +21,10 @@ test:
 	HOME='${CURDIR}' ${TEST_PREFIX}mr --trust-all ed | grep -q "horse"
 	rm -f .mrconfig
 
+test-online:
+	git clone ...
+	...
+
 install: build
 	install -d ${DESTDIR}${BINDIR}
 	install -d ${DESTDIR}${MANDIR}/man1
