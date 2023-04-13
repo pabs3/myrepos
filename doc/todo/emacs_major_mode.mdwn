@@ -17,7 +17,7 @@ I am thinking of something that, when invoked, would:
     from git (possibly with [overlays](https://www.gnu.org/software/emacs/manual/html_node/elisp/Overlays.html)?)
 
 I think the MVP is basically step 1 and 2 above, with something that
-drops me in the repo on "enter". See also [this guide](https://systemcrafters.net/learning-emacs-lisp/creating-minor-modes/).
+drops me in the repo on "enter". See also [this guide](https://systemcrafters.net/learning-emacs-lisp/creating-minor-modes/). The [shell-maker](https://xenodium.com/a-shell-maker/) package might be good inspiration as well.
 
 Bonus points for a "redacted" mode that calls `mr -j$NCPU -m status`
 for a "only relevant" view.
