@@ -108,6 +108,8 @@ Some more examples of things it can do include:
 * [vcstool](https://github.com/dirk-thomas/vcstool): work with multiple repositories
 * [vcstools](https://github.com/vcstools/vcstools): Python API wrapping version control systems
 * [wstool](https://github.com/vcstools/wstool): maintain workspace of projects from multiple VCSes
+* [gr](https://mixu.net/gr/)
+https://github.com/asottile/all-repos
 
 ## news
 
