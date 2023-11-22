@@ -26,3 +26,10 @@
 * [vcstool](https://github.com/dirk-thomas/vcstool): work with multiple repositories
 * [vcstools](https://github.com/vcstools/vcstools): Python API wrapping version control systems
 * [wstool](https://github.com/vcstools/wstool): maintain workspace of projects from multiple VCSes
+* [gr](https://mixu.net/gr/)
+https://github.com/asottile/all-repos
+https://github.com/Yingrjimsch/grgry
+https://github.com/gabrie30/ghorg
+https://github.com/bevane/repocheck
+https://github.com/schwa/multigit-rs
+https://github.com/KMahoney/GitLasso
