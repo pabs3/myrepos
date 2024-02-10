@@ -2312,6 +2312,7 @@ sub getopts {
 	my $result=GetOptions(
 		"d|directory=s" => sub { $directory=safe_abs_path($_[1]) },
 		"c|config=s" => sub { $ENV{MR_CONFIG}=$_[1]; $config_overridden=1 },
+		"no-home-config" sub { undef $HOME_MR_CONFIG },
 		"cache" => \$save_cache,
 		"cached" => \$print_cache,
 		"uncache" => \$remove_cache,
@@ -2414,7 +2415,7 @@ sub main {
 	help(@ARGV) if $ARGV[0] eq 'help';
 
 	my @MR_CONFIGS;
-	push @MR_CONFIGS, $HOME_MR_CONFIG;
+	push @MR_CONFIGS, $HOME_MR_CONFIG if defined $HOME_MR_CONFIG;
 	push @MR_CONFIGS, $ENV{MR_CONFIG};
 
 	startingconfig();
