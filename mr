@@ -750,6 +750,7 @@ use constant {
 };
 
 # configurables
+my $config_builtin=1;
 my $config_overridden=0;
 my $verbose=0;
 my $minimal=0;
@@ -2312,6 +2313,7 @@ sub getopts {
 	my $result=GetOptions(
 		"d|directory=s" => sub { $directory=safe_abs_path($_[1]) },
 		"c|config=s" => sub { $ENV{MR_CONFIG}=$_[1]; $config_overridden=1 },
+		"no-builtin-config" sub { $config_builtin = 0 },
 		"no-home-config" sub { undef $HOME_MR_CONFIG },
 		"cache" => \$save_cache,
 		"cached" => \$print_cache,
@@ -2418,7 +2420,7 @@ sub main {
 	push @MR_CONFIGS, $HOME_MR_CONFIG if defined $HOME_MR_CONFIG;
 	push @MR_CONFIGS, $ENV{MR_CONFIG};
 
-	startingconfig();
+	startingconfig() if $config_builtin;
 	foreach my $MR_CONFIG (@MR_CONFIGS) {
 		loadconfig($MR_CONFIG);
 	}
