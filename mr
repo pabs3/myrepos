@@ -2413,9 +2413,14 @@ sub main {
 	init();
 	help(@ARGV) if $ARGV[0] eq 'help';
 
+	my @MR_CONFIGS;
+	push @MR_CONFIGS, $HOME_MR_CONFIG;
+	push @MR_CONFIGS, $ENV{MR_CONFIG};
+
 	startingconfig();
-	loadconfig($HOME_MR_CONFIG);
-	loadconfig($ENV{MR_CONFIG});
+	foreach my $MR_CONFIG (@MR_CONFIGS) {
+		loadconfig($MR_CONFIG);
+	}
 	#use Data::Dumper; print Dumper(\%config);
 
 	my $action=expandaction(shift @ARGV);
