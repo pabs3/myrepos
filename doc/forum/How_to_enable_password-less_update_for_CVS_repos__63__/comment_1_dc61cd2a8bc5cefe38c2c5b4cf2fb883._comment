@@ -1,0 +1,21 @@
+[[!comment format=mdwn
+ username="PaulWise"
+ avatar="http://cdn.libravatar.org/avatar/3bf5f3b29a3d68ddf11eb1a3d8c5dc65"
+ subject="write a custom skip command for CVS"
+ date="2024-02-14T04:32:04Z"
+ content="""
+If you write a write a custom skip command for CVS something like this:
+
+```
+[DEFAULT]
+cvs_skip = if test \"x$MR_NO_AUTH\" != x ; then grep -vq ^:pserver: \"$MR_REPO/CVS/Root\" ; else false ; fi
+```
+
+Then you can skip the CVS repos with a command like this:
+
+```
+MR_NO_AUTH=yes mr update
+```
+
+That should still update unauthenticated CVS repos but skip authenticated ones.
+"""]]
