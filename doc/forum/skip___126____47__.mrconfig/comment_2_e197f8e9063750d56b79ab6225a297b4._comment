@@ -1,0 +1,8 @@
+[[!comment format=mdwn
+ username="PaulWise"
+ avatar="http://cdn.libravatar.org/avatar/3bf5f3b29a3d68ddf11eb1a3d8c5dc65"
+ subject="there is a patch"
+ date="2024-02-14T04:34:18Z"
+ content="""
+The `config-flexibility` branch in my [fork on github](https://github.com/pabs3/myrepos) now has a patch that might help with this. I need to audit it for unintended consequences before I can include it in the main version.
+"""]]
