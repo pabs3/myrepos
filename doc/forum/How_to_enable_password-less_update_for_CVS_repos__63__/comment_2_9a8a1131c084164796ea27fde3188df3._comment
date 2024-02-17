@@ -1,0 +1,8 @@
+[[!comment format=mdwn
+ username="computist"
+ avatar="http://cdn.libravatar.org/avatar/a17d83194742f0bd57df1e9fc6858c8f"
+ subject="comment 2"
+ date="2024-02-17T01:00:52Z"
+ content="""
+What's the significance of using the `x$MR_NO_AUTH` there? Why not just using a boolean flag?
+"""]]
