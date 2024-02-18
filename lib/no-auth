@@ -1,0 +1,1 @@
+cvs_skip = if test "x$MR_NO_AUTH" != x ; then grep -vq ^:pserver: "$MR_REPO/CVS/Root" ; else false ; fi
