@@ -1,0 +1,3 @@
+use this when doing mr reg:
+
+git config checkout.defaultRemote
