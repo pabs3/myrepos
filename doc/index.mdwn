@@ -88,6 +88,7 @@ Some more examples of things it can do include:
 * [gfold](https://github.com/nickgerace/gfold): lists status of multiple repositories, readonly, config file, rust
 * [ghq](https://github.com/motemen/ghq): manage remote repository clones
 * [git-plus](https://github.com/tkrajina/git-plus) multi: run commands in multiple git repos
+* [git-repo-manager](https://github.com/hakoerber/git-repo-manager/): manage worktrees, automatic listing from forges
 * [git-repo-updater](https://github.com/earwig/git-repo-updater) gitup: update multiple git repos at once
 * [git-workspaces](https://github.com/orf/git-workspace): set upstreams, parallel fetch
 * [gita](https://github.com/nosarthur/gita): manage multiple git repos
