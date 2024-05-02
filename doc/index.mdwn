@@ -94,6 +94,7 @@ Some more examples of things it can do include:
 * [gita](https://github.com/nosarthur/gita): manage multiple git repos
 * [gitbatch](https://github.com/isacikgoz/gitbatch): manage multiple git repos in one place
 * [go-vcs](https://github.com/Masterminds/vcs): version control repository management for Golang
+* [gws](https://github.com/StreakyCobra/gws): workspace management, fetch, clone, status support, odd file format
 * [kas](https://github.com/siemens/kas): bitbake repository management tool
 * [mgitstatus](https://github.com/fboender/multi-git-status): show status in multiple git repos
 * [mani](https://manicli.com/): manage multiple repositories, tasks, tags, YAML config, golang
