@@ -1,0 +1,1 @@
+About the only thing that's stopping me experimenting with the new version control system [pijul](https://pijul.org/) is that it's not integrated with myrepos (which I use on a daily basis). This doesn't look like it should be impossible to rectify!
