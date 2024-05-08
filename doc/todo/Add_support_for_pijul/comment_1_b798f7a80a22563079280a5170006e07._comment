@@ -1,0 +1,16 @@
+[[!comment format=mdwn
+ username="PaulWise"
+ avatar="http://cdn.libravatar.org/avatar/3bf5f3b29a3d68ddf11eb1a3d8c5dc65"
+ subject="help needed"
+ date="2024-05-08T04:04:39Z"
+ content="""
+None of the myrepos committers have experience with Pijul, but if you can provide a patch to the default config in `mr` then we will happily review it and merge it into myrepos. You will need to fill in at least these things:
+
+* `pijul_test`: a perl snippet that detects pijul checkouts
+* `pijul_register`: a shell snippet that detects the pijul remote URL and saves it in ~/.mrconfig
+* please also fill out as many of the other actions in `mr` as possible; especially `fetch`, `commit` and `push`.
+* please also look at the `graph` `remote` `upgrade` `vis` extensions in the `lib/` directory and try to add pijul support for them if that is feasible, where it isn't feasible then add a comment about why.
+```
+
+Once you are done, please post a link to the repository and we will review it. 
+"""]]
