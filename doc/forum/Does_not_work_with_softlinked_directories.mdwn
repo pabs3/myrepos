@@ -1,0 +1,10 @@
+My `~/.mrconfig` is simply a long list of sections like
+
+```
+[code/somename]
+checkout = git clone someurl somename
+```
+
+In my $HOME I have a softlink `code` that links to a data partition ('/storage/code. In this setup `mr up` complains `mr update: no repositories found to work on`. If I remove the softlink and run `mr up`, it works as expected (as in, it creates a directory `~/code` and starts cloning the now missing repos).
+
+mr version 1.20180726 on FreeBSD 14.1-p2
