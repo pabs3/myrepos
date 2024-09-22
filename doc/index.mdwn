@@ -98,6 +98,8 @@ Some more examples of things it can do include:
 * [kas](https://github.com/siemens/kas): bitbake repository management tool
 * [mgitstatus](https://github.com/fboender/multi-git-status): show status in multiple git repos
 * [mani](https://manicli.com/): manage multiple repositories, tasks, tags, YAML config, golang
+* [https://github.com/schwa/multigit-rs](https://github.com/schwa/multigit-rs): run commands, commits, ,
+  register, filters, GUI, rust
 * [multi-gitter](https://github.com/lindell/multi-gitter): run command and commit, manipulates pull requests, YAML config, tightly bound to forges (GitHub, GitLab, Gitea)
 * [mu-repo](https://fabioz.github.io/mu-repo/): help working with multiple git repos
 * [repo](https://android.googlesource.com/tools/repo): git repository management tool
