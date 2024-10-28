@@ -93,6 +93,7 @@ Some more examples of things it can do include:
 * [git-workspaces](https://github.com/orf/git-workspace): set upstreams, parallel fetch
 * [gita](https://github.com/nosarthur/gita): manage multiple git repos
 * [gitbatch](https://github.com/isacikgoz/gitbatch): manage multiple git repos in one place
+* [gitlasso](https://github.com/KMahoney/GitLasso): run commands, registers, subsets, rust
 * [go-vcs](https://github.com/Masterminds/vcs): version control repository management for Golang
 * [gws](https://github.com/StreakyCobra/gws): workspace management, fetch, clone, status support, odd file format
 * [kas](https://github.com/siemens/kas): bitbake repository management tool
