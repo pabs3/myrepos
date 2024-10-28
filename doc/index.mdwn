@@ -82,38 +82,6 @@ Some more examples of things it can do include:
 * [freeze](https://bitbucket.org/mforbes/mmfhg#rst-header-mr-un-freeze): record and restore VCS revision details
 * [github2mr](https://github.com/skx/github2mr): add your github repos to myrepos
 
-## related software
-
-* [garden](https://github.com/davvid/garden/): manage git project dependencies and worktrees, custom commands
-* [gfold](https://github.com/nickgerace/gfold): lists status of multiple repositories, readonly, config file, rust
-* [ghq](https://github.com/motemen/ghq): manage remote repository clones
-* [git-plus](https://github.com/tkrajina/git-plus) multi: run commands in multiple git repos
-* [git-repo-manager](https://github.com/hakoerber/git-repo-manager/): manage worktrees, automatic listing from forges
-* [git-repo-updater](https://github.com/earwig/git-repo-updater) gitup: update multiple git repos at once
-* [git-workspaces](https://github.com/orf/git-workspace): set upstreams, parallel fetch
-* [gita](https://github.com/nosarthur/gita): manage multiple git repos
-* [gitbatch](https://github.com/isacikgoz/gitbatch): manage multiple git repos in one place
-* [gitlasso](https://github.com/KMahoney/GitLasso): run commands, registers, subsets, rust
-* [go-vcs](https://github.com/Masterminds/vcs): version control repository management for Golang
-* [gws](https://github.com/StreakyCobra/gws): workspace management, fetch, clone, status support, odd file format
-* [kas](https://github.com/siemens/kas): bitbake repository management tool
-* [mgitstatus](https://github.com/fboender/multi-git-status): show status in multiple git repos
-* [mani](https://manicli.com/): manage multiple repositories, tasks, tags, YAML config, golang
-* [https://github.com/schwa/multigit-rs](https://github.com/schwa/multigit-rs): run commands, commits, ,
-  register, filters, GUI, rust
-* [multi-gitter](https://github.com/lindell/multi-gitter): run command and commit, manipulates pull requests, YAML config, tightly bound to forges (GitHub, GitLab, Gitea)
-* [mu-repo](https://fabioz.github.io/mu-repo/): help working with multiple git repos
-* [repo](https://android.googlesource.com/tools/repo): git repository management tool
-* [rosinstall](https://github.com/vcstools/rosinstall): source code workspace management tool
-* [silver-platter](https://www.jelmer.uk/silver-platter-intro.html): make automated changes in different version control repositories
-* [uncommitted](https://github.com/brandon-rhodes/uncommitted): find uncommitted changes in VCS directories
-* [v](https://github.com/ChristophBerg/dotfiles/blob/master/bin/v): version control subcommand wrapper
-* [VCS](https://www.greenend.org.uk/rjk/vcs/): a wrapper for version control systems
-* [vcs-repo-mgr](https://github.com/xolox/python-vcs-repo-mgr): version control repository manager
-* [vcstool](https://github.com/dirk-thomas/vcstool): work with multiple repositories
-* [vcstools](https://github.com/vcstools/vcstools): Python API wrapping version control systems
-* [wstool](https://github.com/vcstools/wstool): maintain workspace of projects from multiple VCSes
-
 ## news
 
 [[!inline pages="news/* and !*/Discussion" show="4" archive=yes]]
@@ -123,3 +91,7 @@ Some more examples of things it can do include:
 [[Todo]]  
 [[Forum]]  
 """]]
+
+## related software
+
+See [[related]].
