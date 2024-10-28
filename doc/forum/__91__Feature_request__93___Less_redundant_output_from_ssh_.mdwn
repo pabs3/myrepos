@@ -1,0 +1,3 @@
+For repos on on my private git server involving SSH, the output is very long with SSH displaying the same host key fingerprint (SHA256 fingerprint) fingerprint for each repo (each taking 15 lines). Silencing all of them is not recommended though because it's still technically important for security, so I'm not sure what's the best way to deal with this:
+
+It would be nice if myrepos can display fingerprint only once for each unique server. Actually, maybe piping this into some script that does this a more appropriate workaround.
